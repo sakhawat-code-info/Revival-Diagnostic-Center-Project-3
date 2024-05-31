@@ -1,4 +1,4 @@
-import logo from '../assets/logo2-removebg-preview.png';
+
 
 
 // bg-teal-800 
@@ -6,141 +6,78 @@ import logo from '../assets/logo2-removebg-preview.png';
 
 const Footer = () => {
     return (
-        <div className="mt-8 bg-[#0a3d62] pt-9 text-black">
+        <footer className="bg-[#0a4275] font-sans tracking-wide">
+            <div className="py-14 px-6 sm:px-10">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
 
-            <div className="mx-auto w-full max-w-[1166px] px-4 xl:px-0">
+                    <div className="lg:col-span-2">
+                        <a href='javascript:void(0)'><img src="https://readymadeui.com/readymadeui-white.svg" alt="logo"
+                            className='w-44 mb-8' /></a>
+                        <p className="text-gray-300 text-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio.
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio.</p>
+                    </div>
 
-                <div className="grid grid-cols-3 md:grid-cols-9 md:gap-7 items-center justify-center sm:px-[18px] md:flex-row md:px-10">
-                    <div className="col-span-3">
-                        <p className="text-[18px] font-medium text-white">
-                            <h1 className="text-white font-extrabold flex items-center">
-                                <img className="w-10 h-10" src={logo} alt="Pic" />
-                                Options&nbsp;<span className="text-rose-600">Knock</span>
-                            </h1>
-                        </p>
-                        <p className="mt-[18px] text-[15px] font-normal text-white/[80%] text-justify">Welcome to Options Knock, your ultimate destination for swift solutions and efficient outcomes. At Options Knock, we understand the value of time and the importance of getting things done quickly. Whether you are looking to streamline your workflow, solve complex problems, or find rapid solutions to everyday challenges, Options Knock is here to help.</p>
-                        <div className="mt-[18px] flex items-center gap-4">
+                    <div>
+                        <h4 className="text-lg font-semibold mb-8 text-white">Navigation</h4>
+                        <ul className="space-y-4">
+                            <li><a href="javascript:void(0)" className="text-gray-300 hover:text-white text-sm">Home</a></li>
+                            <li><a href="javascript:void(0)" className="text-gray-300 hover:text-white text-sm">About</a></li>
+                            <li><a href="javascript:void(0)" className="text-gray-300 hover:text-white text-sm">Services</a></li>
+                            <li><a href="javascript:void(0)" className="text-gray-300 hover:text-white text-sm">Contact</a></li>
+                        </ul>
+                    </div>
 
-                            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
-                                <img src="https://img.icons8.com/fluent/30/000000/facebook-new.png" />
-                            </a>
-                            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
-                                <img src="https://img.icons8.com/fluent/30/000000/linkedin-2.png" />
-                            </a>
-                            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
-                                <img src="https://img.icons8.com/fluent/30/000000/instagram-new.png" />
-                            </a>
-                            <a href="https://messenger.com" target="_blank" rel="noopener noreferrer">
-                                <img src="https://img.icons8.com/fluent/30/000000/facebook-messenger--v2.png" />
-                            </a>
-                            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
-                                <img src="https://img.icons8.com/fluent/30/000000/twitter.png" />
-                            </a>
+                    <div>
+                        <h4 className="text-lg font-semibold mb-8 text-white">Follow Us</h4>
 
+                        <ul className="flex gap-4">
+                            <li><a href="javascript:void(0)">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" className="fill-gray-300 inline hover:fill-white w-6 h-6"
+                                    viewBox="0 0 24 24">
+                                    <path fill-rule="evenodd"
+                                        d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h7v-7h-2v-3h2V8.5A3.5 3.5 0 0 1 15.5 5H18v3h-2a1 1 0 0 0-1 1v2h3v3h-3v7h4a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2z"
+                                        clip-rule="evenodd" />
+                                </svg></a></li>
+                            <li><a href="javascript:void(0)" className="text-gray-300 hover:text-white">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" className="fill-gray-300 inline hover:fill-white w-6 h-6"
+                                    viewBox="0 0 24 24">
+                                    <path fill-rule="evenodd"
+                                        d="M21 5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5zm-2.5 8.2v5.3h-2.79v-4.93a1.4 1.4 0 0 0-1.4-1.4c-.77 0-1.39.63-1.39 1.4v4.93h-2.79v-8.37h2.79v1.11c.48-.78 1.47-1.3 2.32-1.3 1.8 0 3.26 1.46 3.26 3.26zM6.88 8.56a1.686 1.686 0 0 0 0-3.37 1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68zm1.39 1.57v8.37H5.5v-8.37h2.77z"
+                                        clip-rule="evenodd" />
+                                </svg></a></li>
+                            <li><a href="javascript:void(0)" className="text-gray-300 hover:text-white">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" className="fill-gray-300 inline hover:fill-white w-6 h-6"
+                                    viewBox="0 0 24 24">
+                                    <path
+                                        d="M12 9.3a2.7 2.7 0 1 0 0 5.4 2.7 2.7 0 0 0 0-5.4Zm0-1.8a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9Zm5.85-.225a1.125 1.125 0 1 1-2.25 0 1.125 1.125 0 0 1 2.25 0ZM12 4.8c-2.227 0-2.59.006-3.626.052-.706.034-1.18.128-1.618.299a2.59 2.59 0 0 0-.972.633 2.601 2.601 0 0 0-.634.972c-.17.44-.265.913-.298 1.618C4.805 9.367 4.8 9.714 4.8 12c0 2.227.006 2.59.052 3.626.034.705.128 1.18.298 1.617.153.392.333.674.632.972.303.303.585.484.972.633.445.172.918.267 1.62.3.993.047 1.34.052 3.626.052 2.227 0 2.59-.006 3.626-.052.704-.034 1.178-.128 1.617-.298.39-.152.674-.333.972-.632.304-.303.485-.585.634-.972.171-.444.266-.918.299-1.62.047-.993.052-1.34.052-3.626 0-2.227-.006-2.59-.052-3.626-.034-.704-.128-1.18-.299-1.618a2.619 2.619 0 0 0-.633-.972 2.595 2.595 0 0 0-.972-.634c-.44-.17-.914-.265-1.618-.298-.993-.047-1.34-.052-3.626-.052ZM12 3c2.445 0 2.75.009 3.71.054.958.045 1.61.195 2.185.419A4.388 4.388 0 0 1 19.49 4.51c.457.45.812.994 1.038 1.595.222.573.373 1.227.418 2.185.042.96.054 1.265.054 3.71 0 2.445-.009 2.75-.054 3.71-.045.958-.196 1.61-.419 2.185a4.395 4.395 0 0 1-1.037 1.595 4.44 4.44 0 0 1-1.595 1.038c-.573.222-1.227.373-2.185.418-.96.042-1.265.054-3.71.054-2.445 0-2.75-.009-3.71-.054-.958-.045-1.61-.196-2.185-.419A4.402 4.402 0 0 1 4.51 19.49a4.414 4.414 0 0 1-1.037-1.595c-.224-.573-.374-1.227-.419-2.185C3.012 14.75 3 14.445 3 12c0-2.445.009-2.75.054-3.71s.195-1.61.419-2.185A4.392 4.392 0 0 1 4.51 4.51c.45-.458.994-.812 1.595-1.037.574-.224 1.226-.374 2.185-.419C9.25 3.012 9.555 3 12 3Z" />
+                                </svg></a></li>
+                            <li><a href="javascript:void(0)" className="text-gray-300 hover:text-white">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" className="fill-gray-300 inline hover:fill-white w-6 h-6"
+                                    viewBox="0 0 24 24">
+                                    <path
+                                        d="M22.92 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.83 4.5 17.72 4 16.46 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98-3.56-.18-6.73-1.89-8.84-4.48-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.9 20.29 6.16 21 8.58 21c7.88 0 12.21-6.54 12.21-12.21 0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z" />
+                                </svg></a></li>
+                        </ul>
+
+                    </div>
+
+                    <div>
+                        <h4 className="text-lg font-semibold mb-8 text-white">Contact Us</h4>
+                        <div className="space-y-4">
+                            <p className="text-gray-300 text-sm">123 Street, City Name</p>
+                            <p className="text-gray-300 text-sm">contact@example.com</p>
+                            <p className="text-gray-300 text-sm">+1 234 567 890</p>
                         </div>
                     </div>
 
-                    <div className="col-span-3">
-                        <div className="mt-[23px] flex">
-                            <div className="flex h-[38px] w-[38px] items-center justify-center rounded-[75%]">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M20.8472 14.8554L16.4306 12.8764L16.4184 12.8707C16.1892 12.7727 15.939 12.7333 15.6907 12.7562C15.4424 12.7792 15.2037 12.8636 14.9963 13.002C14.9718 13.0181 14.9484 13.0357 14.9259 13.0545L12.6441 14.9998C11.1984 14.2976 9.70595 12.8164 9.00376 11.3895L10.9519 9.07294C10.9706 9.0495 10.9884 9.02606 11.0053 9.00075C11.1407 8.79384 11.2229 8.55667 11.2445 8.31035C11.2661 8.06402 11.2264 7.81618 11.1291 7.58887V7.57762L9.14438 3.15356C9.0157 2.85662 8.79444 2.60926 8.51362 2.44841C8.2328 2.28756 7.9075 2.22184 7.58626 2.26106C6.31592 2.42822 5.14986 3.05209 4.30588 4.01615C3.4619 4.98021 2.99771 6.21852 3.00001 7.49981C3.00001 14.9436 9.05626 20.9998 16.5 20.9998C17.7813 21.0021 19.0196 20.5379 19.9837 19.6939C20.9477 18.85 21.5716 17.6839 21.7388 16.4136C21.7781 16.0924 21.7125 15.7672 21.5518 15.4864C21.3911 15.2056 21.144 14.9843 20.8472 14.8554ZM16.5 19.4998C13.3185 19.4963 10.2682 18.2309 8.01856 15.9813C5.76888 13.7316 4.50348 10.6813 4.50001 7.49981C4.49648 6.58433 4.82631 5.69887 5.42789 5.00879C6.02947 4.3187 6.86167 3.87118 7.76907 3.74981C7.7687 3.75355 7.7687 3.75732 7.76907 3.76106L9.73782 8.16731L7.80001 10.4867C7.78034 10.5093 7.76247 10.5335 7.74657 10.5589C7.60549 10.7754 7.52273 11.0246 7.5063 11.2825C7.48988 11.5404 7.54035 11.7981 7.65282 12.0307C8.5022 13.7679 10.2525 15.5051 12.0084 16.3536C12.2428 16.465 12.502 16.5137 12.7608 16.495C13.0196 16.4762 13.2692 16.3907 13.485 16.2467C13.5091 16.2305 13.5322 16.2129 13.5544 16.1942L15.8334 14.2498L20.2397 16.2232C20.2397 16.2232 20.2472 16.2232 20.25 16.2232C20.1301 17.1319 19.6833 17.9658 18.9931 18.5689C18.3028 19.172 17.4166 19.5029 16.5 19.4998Z"
-                                        fill="white"></path>
-                                </svg>
-                            </div>
-                            <div className="ml-[18px]">
-                                <a href="tel:+911800123444" className="font-Inter text-[14px] font-medium text-white">+88 0176333012</a>
-                                <p className="font-Inter text-[12px] font-medium text-white">Support Number</p>
-                            </div>
-                        </div>
-                        <div className="mt-[23px] flex">
-                            <div className="flex h-[38px] w-[38px] items-center justify-center rounded-[75%]">
-                                <svg width="20" height="15" viewBox="0 0 20 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M19 0H1C0.801088 0 0.610322 0.0790178 0.46967 0.21967C0.329018 0.360322 0.25 0.551088 0.25 0.75V13.5C0.25 13.8978 0.408035 14.2794 0.68934 14.5607C0.970644 14.842 1.35218 15 1.75 15H18.25C18.6478 15 19.0294 14.842 19.3107 14.5607C19.592 14.2794 19.75 13.8978 19.75 13.5V0.75C19.75 0.551088 19.671 0.360322 19.5303 0.21967C19.3897 0.0790178 19.1989 0 19 0ZM10 7.98281L2.92844 1.5H17.0716L10 7.98281ZM7.25406 7.5L1.75 12.5447V2.45531L7.25406 7.5ZM8.36406 8.51719L9.48906 9.55312C9.62743 9.68014 9.80842 9.75062 9.99625 9.75062C10.1841 9.75062 10.3651 9.68014 10.5034 9.55312L11.6284 8.51719L17.0659 13.5H2.92844L8.36406 8.51719ZM12.7459 7.5L18.25 2.45438V12.5456L12.7459 7.5Z"
-                                        fill="white"></path>
-                                </svg>
-                            </div>
-                            <div className="ml-[18px]">
-                                <a href="mailto:help@lorem.com" className="font-Inter text-[14px] font-medium text-[#fff]">sakhawat.code.info@gmail.com</a>
-                                <p className="font-Inter text-[12px] font-medium text-[#fff]">Support Email</p>
-                            </div>
-                        </div>
-                        <div className="mt-[23px] flex">
-                            <div className="flex h-[38px] w-[38px] items-center justify-center rounded-[75%]">
-                                <svg width="18" height="21" viewBox="0 0 18 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M9 4.5C8.25832 4.5 7.5333 4.71993 6.91661 5.13199C6.29993 5.54404 5.81928 6.12971 5.53545 6.81494C5.25162 7.50016 5.17736 8.25416 5.32205 8.98159C5.46675 9.70902 5.8239 10.3772 6.34835 10.9017C6.8728 11.4261 7.54098 11.7833 8.26841 11.9279C8.99584 12.0726 9.74984 11.9984 10.4351 11.7145C11.1203 11.4307 11.706 10.9501 12.118 10.3334C12.5301 9.7167 12.75 8.99168 12.75 8.25C12.75 7.25544 12.3549 6.30161 11.6517 5.59835C10.9484 4.89509 9.99456 4.5 9 4.5ZM9 10.5C8.55499 10.5 8.11998 10.368 7.74997 10.1208C7.37996 9.87357 7.09157 9.52217 6.92127 9.11104C6.75097 8.6999 6.70642 8.2475 6.79323 7.81105C6.88005 7.37459 7.09434 6.97368 7.40901 6.65901C7.72368 6.34434 8.12459 6.13005 8.56105 6.04323C8.9975 5.95642 9.4499 6.00097 9.86104 6.17127C10.2722 6.34157 10.6236 6.62996 10.8708 6.99997C11.118 7.36998 11.25 7.80499 11.25 8.25C11.25 8.84674 11.0129 9.41903 10.591 9.84099C10.169 10.2629 9.59674 10.5 9 10.5ZM9 0C6.81273 0.00248131 4.71575 0.872472 3.16911 2.41911C1.62247 3.96575 0.752481 6.06273 0.75 8.25C0.75 11.1938 2.11031 14.3138 4.6875 17.2734C5.84552 18.6108 7.14886 19.8151 8.57344 20.8641C8.69954 20.9524 8.84978 20.9998 9.00375 20.9998C9.15772 20.9998 9.30796 20.9524 9.43406 20.8641C10.856 19.8147 12.1568 18.6104 13.3125 17.2734C15.8859 14.3138 17.25 11.1938 17.25 8.25C17.2475 6.06273 16.3775 3.96575 14.8309 2.41911C13.2843 0.872472 11.1873 0.00248131 9 0ZM9 19.3125C7.45031 18.0938 2.25 13.6172 2.25 8.25C2.25 6.45979 2.96116 4.7429 4.22703 3.47703C5.4929 2.21116 7.20979 1.5 9 1.5C10.7902 1.5 12.5071 2.21116 13.773 3.47703C15.0388 4.7429 15.75 6.45979 15.75 8.25C15.75 13.6153 10.5497 18.0938 9 19.3125Z"
-                                        fill="white"></path>
-                                </svg>
-                            </div>
-                            <div className="ml-[18px]">
-                                <a href="mailto:help@lorem.com" className="font-Inter text-[14px] font-medium text-[#fff]">Kazi nazrul islam avenue, Sahabag,
-                                    Dhaka, 1212</a>
-                                <p className="font-Inter text-[12px] font-medium text-white">Address</p>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div className="col-span-3  mt-6 flex w-full flex-col  lg:justify-between text-white sm:flex-row md:mt-0 md:max-w-[341px]">
-                        <div className="">
-                            <p className="text-white font-inter text-[18px] font-medium leading-normal">Pages</p>
-                            <ul>
-                                <li className="mt-[15px]"><a
-                                    className="text-white hover:text-white/80 font-inter text-[15px] font-normal hover:font-semibold"
-                                    href="/">Home</a></li>
-                                <li className="mt-[15px]"><a
-                                    className="text-white hover:text-white/80 font-inter text-[15px] font-normal hover:font-semibold"
-                                    href="/our-tutors">News</a></li>
-                                <li className="mt-[15px]"><a
-                                    className="text-white hover:text-white/80 font-inter text-[15px] font-normal hover:font-semibold"
-                                    href="/become-a-tutor">Contact</a></li>
-                                <li className="mt-[15px]"><a
-                                    className="text-white hover:text-white/80 font-inter text-[15px] font-normal hover:font-semibold"
-                                    href="/plans-and-pricing">Plans and pricing</a></li>
-                                <li className="mt-[15px]"><a
-                                    className="text-white hover:text-white/80 font-inter text-[15px] font-normal hover:font-semibold"
-                                    href="/terms-and-conditions">Terms and conditions</a></li>
-                                <li className="mt-[15px]"><a
-                                    className="text-white hover:text-white/80 font-inter text-[15px] font-normal hover:font-semibold"
-                                    href="/privacy-policy">Privcay policy</a></li>
-                            </ul>
-                        </div>
-                        <div className="mt-6 flex flex-col gap-4 sm:mt-0">
-                            <p className="text-white font-inter text-[18px] font-medium">Download the app</p>
-                            <div className="flex gap-4 sm:flex-col">
-                                <a href="#" className="w-full min-w-xl">
-                                    <img src="https://mcqmate.com/public/images/icons/playstore.svg" alt="Playstore Button"
-                                        className="h-10" />
-                                </a>
-                                {/* <a className="w-full min-w-xl" href="https://www.youtube.com/channel/UCo8tEi6SrGFP8XG9O0ljFgA">
-                                    <img src="https://mcqmate.com/public/images/icons/youtube.svg" alt="Youtube Button"
-                                        className="h-28" />
-                                </a> */}
-                            </div>
-                        </div>
-                    </div>
                 </div>
-
-
-
-                <hr className="mt-[30px] text-white" />
-
-                <div className="flex items-center justify-center pb-8 pt-[9px] md:py-8">
-                    <p className="text-[10px] font-normal text-white md:text-[12px]">
-                        © Copyright
-                        2024
-                        , All Rights Reserved by <span className="font-extrabold">Options Knock</span>.com
-                    </p>
-                </div>
-
-
             </div>
 
-
-        </div>
+            <div className="text-center py-5 bg-[#08355e]">
+                <p className='text-gray-300 text-sm'>© 2023<a href='https://readymadeui.com/' target='_blank'
+                    className="hover:underline mx-1">ReadymadeUI</a>All Rights Reserved.</p>
+            </div>
+        </footer>
     );
 };
 

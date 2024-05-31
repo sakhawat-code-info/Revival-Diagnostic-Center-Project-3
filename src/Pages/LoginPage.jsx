@@ -1,8 +1,3 @@
-import { Link } from "react-router-dom";
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import login from '../assets/login.png';
-
 
 
 const LoginPage = () => {
@@ -66,76 +61,45 @@ const LoginPage = () => {
 
 
     return (
-        <div className="py-16">
-            <div className="flex  rounded-lg shadow-2xl overflow-hidden mx-auto max-w-sm lg:max-w-4xl">
-                {/* <div className="hidden rounded-2xl lg:block lg:w-1/2 bg-contain bg-center bg-no-repeat bg-[url('https://img.freepik.com/free-vector/security-concept-illustration_114360-1528.jpg?t=st=1715236127~exp=1715239727~hmac=bdaf3c71a24ad112d1f31f2ee780a328c8560c5c92ac21067a1b4735db7225de&w=740')]"> */}
-                <div className="hidden rounded-2xl lg:block lg:w-1/2">
-
-                    <img src={login} alt="" />
-
-                </div>
-                <div className="w-full p-8 lg:w-1/2">
-                    <h2 className="text-2xl font-semibold text-gray-700 text-center">Login Now</h2>
-                    <p className="text-xl text-gray-600 text-center">Welcome back!</p>
-
-                    <a className="flex items-center justify-center mt-4 text-white rounded-lg shadow-md hover:bg-gray-100">
-                        <div className="px-4 py-3">
-                            <svg className="h-6 w-6" viewBox="0 0 40 40">
-                                <path
-                                    d="M36.3425 16.7358H35V16.6667H20V23.3333H29.4192C28.045 27.2142 24.3525 30 20 30C14.4775 30 10 25.5225 10 20C10 14.4775 14.4775 9.99999 20 9.99999C22.5492 9.99999 24.8683 10.9617 26.6342 12.5325L31.3483 7.81833C28.3717 5.04416 24.39 3.33333 20 3.33333C10.7958 3.33333 3.33335 10.7958 3.33335 20C3.33335 29.2042 10.7958 36.6667 20 36.6667C29.2042 36.6667 36.6667 29.2042 36.6667 20C36.6667 18.8825 36.5517 17.7917 36.3425 16.7358Z"
-                                    fill="#FFC107" />
-                                <path
-                                    d="M5.25497 12.2425L10.7308 16.2583C12.2125 12.59 15.8008 9.99999 20 9.99999C22.5491 9.99999 24.8683 10.9617 26.6341 12.5325L31.3483 7.81833C28.3716 5.04416 24.39 3.33333 20 3.33333C13.5983 3.33333 8.04663 6.94749 5.25497 12.2425Z"
-                                    fill="#FF3D00" />
-                                <path
-                                    d="M20 36.6667C24.305 36.6667 28.2167 35.0192 31.1742 32.34L26.0159 27.975C24.3425 29.2425 22.2625 30 20 30C15.665 30 11.9842 27.2359 10.5975 23.3784L5.16254 27.5659C7.92087 32.9634 13.5225 36.6667 20 36.6667Z"
-                                    fill="#4CAF50" />
-                                <path
-                                    d="M36.3425 16.7358H35V16.6667H20V23.3333H29.4192C28.7592 25.1975 27.56 26.805 26.0133 27.9758C26.0142 27.975 26.015 27.975 26.0158 27.9742L31.1742 32.3392C30.8092 32.6708 36.6667 28.3333 36.6667 20C36.6667 18.8825 36.5517 17.7917 36.3425 16.7358Z"
-                                    fill="#1976D2" />
-                            </svg>
+        <div className="contain py-16">
+            <div className="max-w-lg mx-auto shadow px-6 py-7 rounded overflow-hidden">
+                <h2 className="text-2xl uppercase font-medium mb-1">Login</h2>
+                <p className="text-gray-600 mb-6 text-sm">Welcome! So good to have you back!</p>
+                <form >
+                    <p className="text-red-500"></p>
+                    <div className="space-y-2">
+                        <div>
+                            <label className="text-gray-600 mb-2 block"></label>Email address
+                            <input type="email" name="email" id="email" className="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-teal-500 placeholder-gray-400" placeholder="youremail.@domain.com" />
                         </div>
-                        <h1 className="px-4 py-3 w-5/6 text-center text-gray-600 font-bold">Sign in with Google</h1>
-                    </a>
-
-
-
-                    <div className="mt-4 flex items-center justify-between">
-                        <span className="border-b w-1/5 lg:w-1/4"></span>
-                        <a href="#" className="text-xs text-center text-gray-500 uppercase">or login with Social Icons</a>
-                        <span className="border-b w-1/5 lg:w-1/4"></span>
                     </div>
-
-
-                    <form>
-                        <div className="mt-4">
-                            <label className="block text-gray-700 text-sm font-bold mb-2">Email Address</label>
-                            <input className="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none" type="email" name='email' required />
-                        </div>
-                        <div className="mt-4">
-                            <div className="flex justify-between">
-                                <label className="block text-gray-700 text-sm font-bold mb-2">Password</label>
-                                <a href="#" className="text-xs text-gray-500">Forget Password?</a>
+                    <div className="space-y-2">
+                        <div>
+                            <label className="text-gray-600 mb-2 block"></label>Password
+                            <div className="relative">
+                                <input type="password" name="password" id="password" className="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-teal-500 placeholder-gray-400" placeholder="***********" />
+                                <div
+                                    className="cursor-pointer absolute inset-y-0 right-0 flex items-center px-8 text-gray-600 border-l border-gray-300">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke="currentColor" className="w-5 h-5">
+                                        <path
+                                            d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z">
+                                        </path>
+                                        <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                    </svg>
+                                </div>
                             </div>
-                            <input className="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none" type="password" name='password' required />
                         </div>
-                        <div className="mt-8">
-                            <button className="bg-gray-700 text-white font-bold py-2 px-4 w-full rounded hover:bg-gray-600">Login</button>
-                        </div>
-                    </form>
-
-
-
-
-                    <div className="mt-4 flex items-center justify-between">
-                        <span className="border-b w-1/5 md:w-1/4"></span>
-                        <Link to={'/register'} className="text-xs text-gray-500 uppercase">or
-                            <span className="link link-primary font-extrabold"> register now !!!</span> </Link>
-                        <span className="border-b w-1/5 md:w-1/4"></span>
                     </div>
-                </div>
+                    <div className="mt-4">
+                        <button type="submit" className="block w-full py-2 text-center text-white bg-teal-500 border border-teal-500 rounded hover:bg-transparent hover:text-teal-500 transition uppercase font-roboto font-medium">Login</button>
+                        <div className="flex gap-2 pt-5">
+                            <p className="text-gray-600 text-sm">Do not have an account?</p><a className="text-gray-600 text-sm underline"
+                                href="/register">Register here</a>
+                        </div>
+                    </div>
+                </form>
             </div>
-            <ToastContainer />
         </div>
     );
 };
