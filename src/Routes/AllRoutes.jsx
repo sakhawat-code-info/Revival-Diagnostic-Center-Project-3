@@ -5,6 +5,10 @@ import App from "../App";
 import LoginPage from "../Pages/LoginPage";
 import RegisterPage from "../Pages/RegisterPage";
 import Root from '../Layout/Root'
+import PrivateRoute from "./PrivateRoute";
+import UpcomingAppointments from "../Pages/UpcomingAppointments";
+import TestResults from "../Pages/TestResults";
+import Profile from "../Pages/Profile";
 
 
 export const router = createBrowserRouter([
@@ -15,7 +19,7 @@ export const router = createBrowserRouter([
         children: [
             {
                 path: "/",
-                element: <App />,
+                element: <PrivateRoute><App /></PrivateRoute>,
             },
             {
                 path: "/login",
@@ -24,6 +28,18 @@ export const router = createBrowserRouter([
             {
                 path: "/registration",
                 element: <RegisterPage />,
+            },
+            {
+                path: "/upcomingAppointments",
+                element: <UpcomingAppointments />,
+            },
+            {
+                path: "/testResults",
+                element: <TestResults />,
+            },
+            {
+                path: "/profile",
+                element: <Profile />,
             },
         ],
     },
