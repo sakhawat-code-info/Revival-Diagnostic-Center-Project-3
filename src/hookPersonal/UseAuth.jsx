@@ -1,12 +1,12 @@
 
-// import { useContext } from 'react';
-// import { AuthContext } from '../AuthProvider/AuthProvider';
+import { useContext } from 'react';
+import { AuthContext } from '../AuthProvider/AuthProvider';
 
-// const UseAuth = () => {
+const UseAuth = () => {
 
-//     const authData = useContext(AuthContext)
+    const authData = useContext(AuthContext)
 
-//     return authData;
-// };
+    return authData;
+};
 
-// export default UseAuth;
+export default UseAuth;
