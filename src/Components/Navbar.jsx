@@ -90,21 +90,28 @@ const Navbar = () => {
                                     Home
                                 </NavLink>
                             </li>
-                            <li className='max-lg:border-b max-lg:py-3'>
-                                <NavLink to={'/upcomingAppointments'} className={({ isActive }) => isActive ? "hover:text-blue-600 text-[15px] font-bold text-blue-600 block" : "hover:text-[#007bff] text-gray-600 text-[15px] font-bold block"}>
-                                    Upcoming Appointments
-                                </NavLink>
-                            </li>
-                            <li className='max-lg:border-b max-lg:py-3'>
-                                <NavLink to={'/testResults'} className={({ isActive }) => isActive ? "hover:text-blue-600 text-[15px] font-bold text-blue-600 block" : "hover:text-[#007bff] text-gray-600 text-[15px] font-bold block"}>
-                                    Test Results
-                                </NavLink>
-                            </li>
-                            <li className='max-lg:border-b max-lg:py-3'>
-                                <NavLink to={'/profile'} className={({ isActive }) => isActive ? "hover:text-blue-600 text-[15px] font-bold text-blue-600 block" : "hover:text-[#007bff] text-gray-600 text-[15px] font-bold block"}>
-                                    Profile
-                                </NavLink>
-                            </li>
+
+                            {
+                                user && <>
+                                    <li className='max-lg:border-b max-lg:py-3'>
+                                        <NavLink to={'/upcomingAppointments'} className={({ isActive }) => isActive ? "hover:text-blue-600 text-[15px] font-bold text-blue-600 block" : "hover:text-[#007bff] text-gray-600 text-[15px] font-bold block"}>
+                                            Upcoming Appointments
+                                        </NavLink>
+                                    </li>
+                                    <li className='max-lg:border-b max-lg:py-3'>
+                                        <NavLink to={'/testResults'} className={({ isActive }) => isActive ? "hover:text-blue-600 text-[15px] font-bold text-blue-600 block" : "hover:text-[#007bff] text-gray-600 text-[15px] font-bold block"}>
+                                            Test Results
+                                        </NavLink>
+                                    </li>
+                                    <li className='max-lg:border-b max-lg:py-3'>
+                                        <NavLink to={'/profile'} className={({ isActive }) => isActive ? "hover:text-blue-600 text-[15px] font-bold text-blue-600 block" : "hover:text-[#007bff] text-gray-600 text-[15px] font-bold block"}>
+                                            Profile
+                                        </NavLink>
+                                    </li>
+
+                                </>
+                            }
+
 
 
 
@@ -263,9 +270,16 @@ const Navbar = () => {
                                     </ul>
                                 </button>
                             </> : <>
-                                <button
-                                    className='px-5 py-2 text-sm rounded-full text-white border-2 border-[#007bff] bg-[#007bff] hover:bg-[#004bff]'>Sign In
-                                </button>
+                                <Link to={'/login'}>
+                                    <button className="relative w-full inline-flex items-center justify-center p-4 px-4 py-2 overflow-hidden font-medium text-black transition duration-300 ease-out border-2 border-teal-600 rounded-full shadow-md group">
+                                        <span className="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-x-full bg-teal-600 group-hover:translate-x-0 ease">
+                                            Lets Go &nbsp;
+                                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                                        </span>
+                                        <span className="absolute flex items-center justify-center w-full h-full text-black font-extrabold transition-all duration-300 transform group-hover:translate-x-full ease">Sign In</span>
+                                        <span className="relative invisible">Button Text</span>
+                                    </button>
+                                </Link>
                             </>
                         }
 

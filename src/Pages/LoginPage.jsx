@@ -2,7 +2,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import UseAuth from "../hookPersonal/UseAuth";
 import { ToastContainer, toast } from "react-toastify";
-
+import 'react-toastify/dist/ReactToastify.css';
 
 const LoginPage = () => {
     const navigate = useNavigate();
@@ -67,8 +67,18 @@ const LoginPage = () => {
 
             <div className="max-w-md w-full mx-auto">
                 <form onSubmit={handleLoginForm} className="bg-opacity-70 bg-white rounded-2xl p-6 shadow-[0_2px_16px_-3px_rgba(6,81,237,0.3)]">
-                    <div className="mb-10">
+                    <div className="mb-10 flex justify-between items-center">
                         <h3 className="text-3xl font-extrabold">Sign in</h3>
+
+                        <Link to={'/'} className="relative px-5 py-3 overflow-hidden font-medium text-gray-600 bg-gray-100 border border-gray-100 rounded-lg shadow-inner group">
+                            <span className="absolute top-0 left-0 w-0 h-0 transition-all duration-200 border-t-2 border-gray-600 group-hover:w-full ease"></span>
+                            <span className="absolute bottom-0 right-0 w-0 h-0 transition-all duration-200 border-b-2 border-gray-600 group-hover:w-full ease"></span>
+                            <span className="absolute top-0 left-0 w-full h-0 transition-all duration-300 delay-200 bg-gray-600 group-hover:h-full ease"></span>
+                            <span className="absolute bottom-0 left-0 w-full h-0 transition-all duration-300 delay-200 bg-gray-600 group-hover:h-full ease"></span>
+                            <span className="absolute inset-0 w-full h-full duration-300 delay-300 bg-gray-900 opacity-0 group-hover:opacity-100"></span>
+                            <span className="relative transition-colors duration-300 delay-200 group-hover:text-white ease">Go Home</span>
+                        </Link>
+
                     </div >
                     <div>
                         <div className="relative flex items-center">
@@ -120,10 +130,20 @@ const LoginPage = () => {
                         </div>
                     </div>
                     <div className="mt-10">
-                        <button type="submit"
-                            className="w-full py-2.5 px-4 text-sm font-semibold rounded-full text-white bg-[#333] hover:bg-[#222] focus:outline-none">
+                        {/* <button type="submit"
+                            className=" py-2.5 px-4 text-sm font-semibold rounded-full text-white bg-[#333] hover:bg-[#222] focus:outline-none">
                             Sign in
+                        </button> */}
+
+                        <button type="submit" className="relative w-full inline-flex items-center justify-center p-4 px-6 py-3 overflow-hidden font-medium text-black transition duration-300 ease-out border-2 border-teal-600 rounded-full shadow-md group">
+                            <span className="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-x-full bg-teal-600 group-hover:translate-x-0 ease">
+                                Lets Go To Dashboard &nbsp;
+                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                            </span>
+                            <span className="absolute flex items-center justify-center w-full h-full text-black font-extrabold transition-all duration-300 transform group-hover:translate-x-full ease">Sign In</span>
+                            <span className="relative invisible">Button Text</span>
                         </button>
+
                         <p className="text-sm text-center mt-6">Do not have an account
                             <Link to={'/registration'}
                                 className="font-semibold hover:underline ml-1 whitespace-nowrap">Register here

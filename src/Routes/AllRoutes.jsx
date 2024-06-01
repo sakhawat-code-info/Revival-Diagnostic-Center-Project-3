@@ -19,7 +19,7 @@ export const router = createBrowserRouter([
         children: [
             {
                 path: "/",
-                element: <PrivateRoute><App /></PrivateRoute>,
+                element: <App />,
             },
             {
                 path: "/login",
@@ -31,15 +31,15 @@ export const router = createBrowserRouter([
             },
             {
                 path: "/upcomingAppointments",
-                element: <UpcomingAppointments />,
+                element: <PrivateRoute><UpcomingAppointments /></PrivateRoute>,
             },
             {
                 path: "/testResults",
-                element: <TestResults />,
+                element: <PrivateRoute><TestResults /></PrivateRoute>,
             },
             {
                 path: "/profile",
-                element: <Profile />,
+                element: <PrivateRoute><Profile /></PrivateRoute>,
             },
         ],
     },

@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import UseAuth from "../hookPersonal/UseAuth";
 import Swal from "sweetalert2";
-
+import 'react-toastify/dist/ReactToastify.css';
 
 const RegisterPage = () => {
 
@@ -15,6 +15,7 @@ const RegisterPage = () => {
         const form = event.target
 
         const name = form.name.value;
+        const phoneNumber = form.phoneNumber.value;
         const email = form.email.value;
         const district = form.district.value;
         const subDistrict = form.subDistrict.value;
@@ -26,6 +27,7 @@ const RegisterPage = () => {
 
         console.log(
             name,
+            phoneNumber,
             email,
             district,
             subDistrict,
@@ -88,11 +90,18 @@ const RegisterPage = () => {
         <div className="flex justify-center items-center font-[sans-serif] text-[#333] h-full min-h-screen p-4"
             style={{ backgroundImage: 'url(https://readymadeui.com/background-image.webp)', backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }}>
             <div className="bg-white border rounded-lg px-8 py-6 mx-auto my-8 max-w-2xl" >
-                <h2 className="text-2xl font-medium mb-4">Survey</h2>
+                <div className="flex items-center justify-center">
+                    <h2 className="text-2xl font-extrabold  mb-6">Registration Now</h2>
+                </div>
                 <form onSubmit={handleRegisterForm}>
                     <div className="mb-4">
                         <label className="block text-gray-700 font-medium mb-2">Name</label>
                         <input type="text" id="name" name="name" placeholder="Name"
+                            className="border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-400" required />
+                    </div>
+                    <div className="mb-4">
+                        <label className="block text-gray-700 font-medium mb-2">Phone Number</label>
+                        <input type="number" id="phoneNumber" name="phoneNumber" placeholder="+88 01XX-XX XX XX"
                             className="border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-400" required />
                     </div>
                     <div className="mb-4">
@@ -221,8 +230,25 @@ const RegisterPage = () => {
                     <textarea id="message" name="message"
                         className="border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-400" rows="5"></textarea>
                 </div> */}
-                    <div>
-                        <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">Submit</button>
+                    <div className="flex flex-col items-center justify-center">
+                        {/* <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">Submit</button> */}
+
+                        <button type="submit" className="relative w-2/3 mt-4  inline-flex items-center justify-center p-4 px-6 py-3 overflow-hidden font-medium text-black transition duration-300 ease-out border-2 border-teal-600 rounded-full shadow-md group">
+                            <span className="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-x-full bg-teal-600 group-hover:translate-x-0 ease">
+                                Lets Go &nbsp;
+                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                            </span>
+                            <span className="absolute flex items-center justify-center w-full h-full text-black font-extrabold transition-all duration-300 transform group-hover:translate-x-full ease">Register Now</span>
+                            <span className="relative invisible">Button Text</span>
+                        </button>
+
+
+
+
+
+
+
+
                         <div className="flex gap-2 pt-5">
                             <p className="text-gray-600 text-sm">Already have an account?</p>
                             <Link to={'/login'} className="text-gray-600 text-sm underline">

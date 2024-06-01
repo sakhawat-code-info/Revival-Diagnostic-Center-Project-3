@@ -15,7 +15,7 @@ const Footer = () => {
                     <div className="lg:col-span-2">
                         <Link to={'/'} className="flex items-center gap-1 text-white">
                             <img src={logo} alt="logo" className='w-14' />
-                            <h2 className="text-xl font-extrabold text-white inline-block">Revival Hospital</h2>
+                            <h2 className="text-xl font-extrabold text-white inline-block">Revival Hospital & Diagnostic Center</h2>
                         </Link>
 
                         <p className="text-gray-300 text-sm">
@@ -81,7 +81,7 @@ const Footer = () => {
 
             <div className="text-center py-5 bg-[#08355e]">
                 <p className='text-gray-300 text-sm'>© 2024<a href='https://readymadeui.com/' target='_blank'
-                    className="hover:underline mx-1">Revival Hospital</a>All Rights Reserved.</p>
+                    className="hover:underline mx-1">Revival Hospital & Diagnostic Center</a>All Rights Reserved.</p>
             </div>
         </footer>
     );
