@@ -2,7 +2,7 @@ import { SlCalender } from "react-icons/sl";
 import { LuTestTube2 } from "react-icons/lu";
 import { GiStethoscope } from "react-icons/gi";
 import { RiSlideshowView } from "react-icons/ri";
-
+import { CiLocationOn } from "react-icons/ci";
 
 // transition duration-500 shadow ease-in-out transform hover:-translate-y-1 hover:shadow-lg select-none cursor-pointer bg-white dark:bg-gray-800 rounded-md flex flex-1 items-center p-4
 const UpcomingAppointments = () => {
@@ -29,6 +29,18 @@ const UpcomingAppointments = () => {
                                     Test Name
                                 </div>
                             </th>
+                            <th className="p-4 text-left text-sm font-semibold text-black  ">
+                                <div className="flex items-center ">
+                                    <div className="w-4 h-4 fill-gray-500 inline mr-3 ">
+                                        <CiLocationOn size={16} />
+                                    </div>
+                                    Test Location
+                                </div>
+                            </th>
+
+
+
+
                             <th className="p-4 text-left text-sm font-semibold text-black  ">
                                 <div className="flex items-center ">
                                     <div className="w-4 h-4 fill-gray-500 inline mr-3 ">
@@ -97,6 +109,16 @@ const UpcomingAppointments = () => {
                                     </div>
                                 </div>
                             </td>
+
+                            <td className="p-4 text-sm">
+                                <div className="flex items-center cursor-pointer w-max">
+                                    <div className="ml-4">
+                                        <p className="text-sm text-black">At Diagnostic Center || Home</p>
+                                        <p className="text-xs text-gray-500">108 no room || Home Location</p>
+                                    </div>
+                                </div>
+                            </td>
+
                             <td className="p-4 text-sm">
                                 <div className="flex items-center cursor-pointer w-max">
                                     <div className="ml-4">

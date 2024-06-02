@@ -9,6 +9,10 @@ import PrivateRoute from "./PrivateRoute";
 import UpcomingAppointments from "../Pages/UpcomingAppointments";
 import TestResults from "../Pages/TestResults";
 import Profile from "../Pages/Profile";
+import ProfileUpdate from "../Pages/ProfileUpdate";
+import AdminDashboard from "../Layout/AdminDashboard";
+import AllUsers from "../AdminPages/AllUsers";
+import AddNewTest from "../AdminPages/AddNewTest";
 
 
 export const router = createBrowserRouter([
@@ -40,6 +44,25 @@ export const router = createBrowserRouter([
             {
                 path: "/profile",
                 element: <PrivateRoute><Profile /></PrivateRoute>,
+            },
+            {
+                path: "/profileUpdate",
+                element: <PrivateRoute><ProfileUpdate /></PrivateRoute>,
+            },
+        ],
+    },
+    {
+        path: "adminDashboard",
+        element: <AdminDashboard />,
+        errorElement: <ErrorPage />,
+        children: [
+            {
+                path: "/adminDashboard/allUsers",
+                element: <AllUsers />,
+            },
+            {
+                path: "/adminDashboard/addNewTest",
+                element: <AddNewTest />,
             },
         ],
     },
