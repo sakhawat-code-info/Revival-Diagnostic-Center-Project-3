@@ -2,6 +2,8 @@ import { Link, Outlet } from "react-router-dom";
 import { IoHome } from "react-icons/io5";
 import { BsPeople } from "react-icons/bs";
 import { MdOutlineNewLabel } from "react-icons/md";
+import { LuGalleryThumbnails } from "react-icons/lu";
+import { GiTestTubes } from "react-icons/gi";
 
 
 const AdminDashboard = () => {
@@ -47,11 +49,29 @@ const AdminDashboard = () => {
                                             Add New Test
                                         </span>
                                     </Link>
+                                    <Link to={'/adminDashboard/allTests'} className="flex items-center justify-start w-full p-4 my-2 font-thin text-gray-500 uppercase transition-colors duration-200 dark:text-gray-200 hover:text-blue-500" href="#">
+                                        <span className="text-left">
+
+                                            <GiTestTubes size={20} />
+                                        </span>
+                                        <span className="mx-4 text-sm font-normal">
+                                            All Tests
+                                        </span>
+                                    </Link>
+                                    <Link to={'/adminDashboard/allAppointments'} className="flex items-center justify-start w-full p-4 my-2 font-thin text-gray-500 uppercase transition-colors duration-200 dark:text-gray-200 hover:text-blue-500" href="#">
+                                        <span className="text-left">
+                                            <LuGalleryThumbnails size={20} />
+                                        </span>
+                                        <span className="mx-4 text-sm font-normal">
+                                            All Appointments
+                                        </span>
+                                    </Link>
 
 
 
                                     <div className="divider px-6"></div>
 
+                                    {/* user data  */}
                                     <Link to={'/'} className="flex items-center justify-start w-full p-4 my-2 font-thin text-gray-500 uppercase transition-colors duration-200 dark:text-gray-200 hover:text-blue-500" href="#">
                                         <span className="text-left">
                                             <IoHome size={20} />

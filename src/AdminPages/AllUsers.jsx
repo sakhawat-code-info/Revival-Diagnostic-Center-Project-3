@@ -1,6 +1,19 @@
 import { MdOutlineFileDownload } from "react-icons/md";
+// import { jsPDF } from "jspdf";
+
+
+
 
 const AllUsers = () => {
+
+    // const doc = new jsPDF();
+    // const printNow = () => {
+    //     doc.save("a4.pdf");
+    //     doc.text("Hello world!", 10, 10);
+    // // doc.save("a4.pdf");
+    // }
+
+
     return (
         <div className="container mx-auto">
             <div className="font-[sans-serif] overflow-x-auto">

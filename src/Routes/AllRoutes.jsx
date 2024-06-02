@@ -13,6 +13,9 @@ import ProfileUpdate from "../Pages/ProfileUpdate";
 import AdminDashboard from "../Layout/AdminDashboard";
 import AllUsers from "../AdminPages/AllUsers";
 import AddNewTest from "../AdminPages/AddNewTest";
+import AllTests from "../AdminPages/AllTests";
+import TestDataUpdate from "../AdminPages/TestDataUpdate";
+import AllAppointments from "../AdminPages/AllAppointments";
 
 
 export const router = createBrowserRouter([
@@ -63,6 +66,18 @@ export const router = createBrowserRouter([
             {
                 path: "/adminDashboard/addNewTest",
                 element: <AddNewTest />,
+            },
+            {
+                path: "/adminDashboard/allTests",
+                element: <AllTests />,
+            },
+            {
+                path: "/adminDashboard/testDataUpdate",
+                element: <TestDataUpdate />,
+            },
+            {
+                path: "/adminDashboard/allAppointments",
+                element: <AllAppointments />,
             },
         ],
     },
