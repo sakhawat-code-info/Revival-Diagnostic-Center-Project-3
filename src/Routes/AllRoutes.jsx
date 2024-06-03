@@ -16,6 +16,11 @@ import AddNewTest from "../AdminPages/AddNewTest";
 import AllTests from "../AdminPages/AllTests";
 import TestDataUpdate from "../AdminPages/TestDataUpdate";
 import AllAppointments from "../AdminPages/AllAppointments";
+import AddBanner from "../AdminPages/AddBanner";
+import AllBanner from "../AdminPages/AllBanner";
+import BannerDataUpdate from "../AdminPages/BannerDataUpdate";
+import BookingRatioDeliveryReportChart from "../AdminPages/BookingRatioDeliveryReportChart";
+import UserAllTestPage from "../Pages/UserAllTestPage";
 
 
 export const router = createBrowserRouter([
@@ -27,6 +32,10 @@ export const router = createBrowserRouter([
             {
                 path: "/",
                 element: <App />,
+            },
+            {
+                path: "/userAllTestPage",
+                element: <UserAllTestPage />,
             },
             {
                 path: "/login",
@@ -78,6 +87,22 @@ export const router = createBrowserRouter([
             {
                 path: "/adminDashboard/allAppointments",
                 element: <AllAppointments />,
+            },
+            {
+                path: "/adminDashboard/addBanner",
+                element: <AddBanner />,
+            },
+            {
+                path: "/adminDashboard/allBanner",
+                element: <AllBanner />,
+            },
+            {
+                path: "/adminDashboard/bannerDataUpdate",
+                element: <BannerDataUpdate />,
+            },
+            {
+                path: "/adminDashboard/bookingRatioDeliveryReportChart",
+                element: <BookingRatioDeliveryReportChart />,
             },
         ],
     },

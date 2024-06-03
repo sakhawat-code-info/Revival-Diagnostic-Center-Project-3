@@ -8,6 +8,27 @@ const AllAppointments = () => {
                 <div className="p-4 mx-auto lg:max-w-7xl sm:max-w-full">
                     <h2 className="text-4xl font-extrabold text-gray-800 mb-12">All Appointments</h2>
 
+                    {/* for searching and sorting  */}
+                    <div className="w-3/5 mx-auto mb-6">
+                        <form className="flex flex-col md:flex-row gap-3">
+                            <div className="flex">
+                                <input type="text" placeholder="Search for the tool you like"
+                                    className="w-full md:w-80 px-3 h-10 rounded-l border-2 border-sky-500 focus:outline-none focus:border-sky-500" />
+                                <button type="submit" className="bg-sky-500 text-white rounded-r px-2 md:px-3 py-0 md:py-1">Search</button>
+                            </div>
+                            <select id="pricingType" name="pricingType"
+                                className="w-full h-10 border-2 border-sky-500 focus:outline-none focus:border-sky-500 text-sky-500 rounded px-2 md:px-3 py-0 md:py-1 tracking-wider">
+                                <option value="All" selected="">All</option>
+                                <option value="Freemium">Freemium</option>
+                                <option value="Free">Free</option>
+                                <option value="Paid">Paid</option>
+                            </select>
+                        </form>
+                    </div>
+
+
+
+
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 max-xl:gap-4 gap-6">
 
 
@@ -35,8 +56,22 @@ const AllAppointments = () => {
                                         <p className="text-xs text-gray-500 mt-0.5">gladys@example.com</p>
                                     </div>
                                 </div>
+
+                                <form>
+                                    <div className="mt-3">
+                                        <label className="mb-1 block text-sm font-medium text-gray-700">Upload Report</label>
+                                        <input id="example1" type="file" className="mt-2 block w-full text-sm file:mr-4 file:rounded-md file:border-0 file:bg-teal-500 file:py-2 file:px-4 file:text-sm file:font-semibold file:text-white hover:file:bg-teal-700 focus:outline-none disabled:pointer-events-none disabled:opacity-60" />
+                                        <div className="flex items-center justify-center mt-4">
+                                            <input type="submit" className="px-5 py-2.5 rounded-full text-white text-sm tracking-wider font-medium border border-current outline-none bg-red-700 hover:bg-red-800 active:bg-red-700 " value="Save" />
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
+
+
+
+
 
 
                     </div>

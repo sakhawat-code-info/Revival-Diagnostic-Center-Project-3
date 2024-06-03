@@ -1,6 +1,7 @@
 
 
 import './App.css'
+import Banner from './Components/Banner'
 
 
 function App() {
@@ -11,11 +12,10 @@ function App() {
 
 
 
-      <div className='container mx-auto mt-40'>
+      <div className='container mx-auto'>
 
 
-        <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque dolore similique aut, eos vitae temporibus. Esse, commodi veritatis vel iusto, saepe blanditiis delectus corrupti porro, omnis at eos repudiandae officiis?</h1>
-
+        <Banner></Banner>
 
       </div>
 

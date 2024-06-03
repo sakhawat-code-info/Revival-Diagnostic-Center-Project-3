@@ -1,9 +1,10 @@
 import { Link, Outlet } from "react-router-dom";
 import { IoHome } from "react-icons/io5";
 import { BsPeople } from "react-icons/bs";
-import { MdOutlineNewLabel } from "react-icons/md";
+import { MdOutlineDensitySmall, MdOutlineNewLabel } from "react-icons/md";
 import { LuGalleryThumbnails } from "react-icons/lu";
 import { GiTestTubes } from "react-icons/gi";
+import { FaChartLine } from "react-icons/fa";
 
 
 const AdminDashboard = () => {
@@ -58,6 +59,7 @@ const AdminDashboard = () => {
                                             All Tests
                                         </span>
                                     </Link>
+
                                     <Link to={'/adminDashboard/allAppointments'} className="flex items-center justify-start w-full p-4 my-2 font-thin text-gray-500 uppercase transition-colors duration-200 dark:text-gray-200 hover:text-blue-500" href="#">
                                         <span className="text-left">
                                             <LuGalleryThumbnails size={20} />
@@ -66,6 +68,42 @@ const AdminDashboard = () => {
                                             All Appointments
                                         </span>
                                     </Link>
+                                    <Link to={'/adminDashboard/addBanner'} className="flex items-center justify-start w-full p-4 my-2 font-thin text-gray-500 uppercase transition-colors duration-200 dark:text-gray-200 hover:text-blue-500" href="#">
+                                        <span className="text-left">
+                                            <MdOutlineNewLabel size={20} />
+                                        </span>
+                                        <span className="mx-4 text-sm font-normal">
+                                            Add Banner
+                                        </span>
+                                    </Link>
+                                    <Link to={'/adminDashboard/allBanner'} className="flex items-center justify-start w-full p-4 my-2 font-thin text-gray-500 uppercase transition-colors duration-200 dark:text-gray-200 hover:text-blue-500" href="#">
+                                        <span className="text-left">
+                                            <MdOutlineDensitySmall size={20} />
+                                        </span>
+                                        <span className="mx-4 text-sm font-normal">
+                                            All Banner
+                                        </span>
+                                    </Link>
+                                    <Link to={'/adminDashboard/bookingRatioDeliveryReportChart'} className="flex items-center justify-start w-full p-4 my-2 font-thin text-gray-500 uppercase transition-colors duration-200 dark:text-gray-200 hover:text-blue-500" href="#">
+                                        <span className="text-left">
+                                            <FaChartLine size={20} />
+                                        </span>
+                                        <span className="mx-4 text-sm font-normal">
+                                            Chart
+                                        </span>
+                                    </Link>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -80,10 +118,6 @@ const AdminDashboard = () => {
                                             Home
                                         </span>
                                     </Link>
-
-
-
-
 
 
 

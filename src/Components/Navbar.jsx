@@ -90,6 +90,11 @@ const Navbar = () => {
                                     Home
                                 </NavLink>
                             </li>
+                            <li className='max-lg:border-b max-lg:py-3'>
+                                <NavLink to={'/userAllTestPage'} className={({ isActive }) => isActive ? "hover:text-blue-600 text-[15px] font-bold text-blue-600 block" : "hover:text-[#007bff] text-gray-600 text-[15px] font-bold block"}>
+                                    All Test
+                                </NavLink>
+                            </li>
 
                             {
                                 user && <>
