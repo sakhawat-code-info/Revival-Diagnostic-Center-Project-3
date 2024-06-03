@@ -2,6 +2,8 @@
 
 import './App.css'
 import Banner from './Components/Banner'
+import Promotions from './Components/Promotions'
+import SliderFeaturedTest from './Components/SliderFeaturedTest/SliderFeaturedTest'
 
 
 function App() {
@@ -16,6 +18,10 @@ function App() {
 
 
         <Banner></Banner>
+
+        <SliderFeaturedTest></SliderFeaturedTest>
+
+        <Promotions></Promotions>
 
       </div>
 

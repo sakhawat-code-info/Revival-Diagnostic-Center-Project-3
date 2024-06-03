@@ -20,8 +20,8 @@ const Banner = () => {
 
 
     return (
-        <div>
-            <div className="bg-gray-100 font-[sans-serif] relative max-w-4xl mx-auto rounded overflow-hidden my-4">
+        <div className="container mx-auto my-10">
+            <div className="bg-gray-100 font-[sans-serif] relative  rounded overflow-hidden my-4">
                 <div className="grid sm:grid-cols-2 gap-6 max-sm:gap-12 py-12 px-6">
                     <div className="bg-gradient-to-tr from-[#273284b6] to-[#1e1e60] px-4 py-8 text-center rounded-[30px] w-full max-w-[300px] h-max skew-x-[10deg] mx-auto shadow-lg shadow-purple-400">
 
