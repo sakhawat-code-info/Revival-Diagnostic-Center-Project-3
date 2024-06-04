@@ -3,7 +3,7 @@ import {
 } from '@tanstack/react-query'
 import axios from "axios";
 
-const useAlltestData = () => {
+const UseAllTestData = () => {
 
     const { data: allTest = [], refetch } = useQuery({
         queryKey: ['allTest'],
@@ -17,4 +17,4 @@ const useAlltestData = () => {
 
 };
 
-export default useAlltestData;
+export default UseAllTestData;

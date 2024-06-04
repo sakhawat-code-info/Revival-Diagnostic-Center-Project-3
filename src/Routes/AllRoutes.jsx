@@ -81,8 +81,9 @@ export const router = createBrowserRouter([
                 element: <AllTests />,
             },
             {
-                path: "/adminDashboard/testDataUpdate",
+                path: "/adminDashboard/testDataUpdate/:updateId",
                 element: <TestDataUpdate />,
+                loader: ({ params }) => fetch(`http://localhost:5000/getSingleTestData/${params.updateId}`)
             },
             {
                 path: "/adminDashboard/allAppointments",

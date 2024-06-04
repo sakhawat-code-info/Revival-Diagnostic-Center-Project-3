@@ -1,7 +1,27 @@
-import { Link } from "react-router-dom";
+import axios from "axios";
+import { Link, useLoaderData } from "react-router-dom";
+import Swal from "sweetalert2";
 
 
 const TestDataUpdate = () => {
+
+
+
+    const data = useLoaderData();
+
+
+    const {
+        _id,
+        testCatagory,
+        testName,
+        testImageURL,
+        testDetails,
+        testPrice,
+        testAddDate,
+        slotDate,
+        slotTime,
+    } = data;
+
     const handleTestDataUpdate = (e) => {
         e.preventDefault();
         const form = e.target;
@@ -18,7 +38,31 @@ const TestDataUpdate = () => {
         const updateTestData = {
             testCatagory, testName, testImageURL, testDetails, testPrice, testAddDate, slotDate, slotTime
         }
-        console.log(updateTestData)
+
+        // console.log(updateTestData)
+        axios.put(`http://localhost:5000/updateAddQueryData/${_id}`, updateTestData)
+            .then(res => {
+                // console.log(res.data)
+                if (res.data.matchedCount) {
+                    Swal.fire({
+                        title: "Do you want to save the changes?",
+                        showDenyButton: true,
+                        showCancelButton: true,
+                        confirmButtonText: "Save",
+                        denyButtonText: `Don't save`
+                    }).then((result) => {
+                        /* Read more about isConfirmed, isDenied below */
+                        if (result.isConfirmed) {
+                            Swal.fire("Saved!", "", "success");
+                            // navigate('/myQueries');
+                        } else if (result.isDenied) {
+                            Swal.fire("Changes are not saved", "", "info");
+                            // navigate('/myQueries');
+                        }
+                    });
+                }
+
+            })
 
     }
     return (
@@ -42,7 +86,7 @@ const TestDataUpdate = () => {
 
                         <div className="col-span-full mb-4">
                             <label className="text-sm font-medium text-gray-900 block mb-2">Test Catagory</label>
-                            <select id="testCatagory" name="testCatagory"
+                            <select id="testCatagory" name="testCatagory" defaultValue={testCatagory}
                                 className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" required>
                                 <option value="">Select Test Catagory </option>
                                 <option value="cardiovascular">Cardiovascular</option>
@@ -55,27 +99,44 @@ const TestDataUpdate = () => {
                         <div className="grid grid-cols-6 gap-6">
                             <div className="col-span-6 sm:col-span-3">
                                 <label className="text-sm font-medium text-gray-900 block mb-2">Test Name</label>
-                                <input type="text" name="testName" id="testName" className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" placeholder="Test Name like FBS, ECG" required />
+                                <input type="text" name="testName" defaultValue={testName} id="testName" className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" placeholder="Test Name like FBS, ECG" required />
                             </div>
 
                             <div className="col-span-6 sm:col-span-3">
                                 <label className="text-sm font-medium text-gray-900 block mb-2">Image URL</label>
-                                <input type="text" name="testImageURL" id="testImageURL" className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" placeholder="Electronics" required />
+                                <input type="text" name="testImageURL" defaultValue={testImageURL} id="testImageURL" className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" placeholder="Electronics" required />
                             </div>
 
                             <div className="col-span-6 sm:col-span-3">
                                 <label className="text-sm font-medium text-gray-900 block mb-2">Date</label>
-                                <input type="date" name="testAddDate" id="testAddDate" className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" placeholder="Apple" required />
+                                <input type="date" name="testAddDate" defaultValue={testAddDate} id="testAddDate" className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" placeholder="Apple" required />
                             </div>
 
                             <div className="col-span-6 sm:col-span-3">
                                 <label className="text-sm font-medium text-gray-900 block mb-2">Price</label>
-                                <input type="number" name="testPrice" id="testPrice" className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" placeholder="$2300" required />
+                                <input type="number" name="testPrice" defaultValue={testPrice} id="testPrice" className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" placeholder="$2300" required />
                             </div>
+
+                            <div className="col-span-6 sm:col-span-3 ">
+                                <label className="text-sm font-medium text-gray-900 block mb-2">Slots</label>
+
+
+                                {/* <input type="date" name="slotDate" required /> */}
+                                {/* <input type="time" name="slotTime" required /> */}
+
+                                <div className="flex gap-6">
+                                    <input type="date" name="slotDate" defaultValue={slotDate} id="" className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" placeholder="Slot Date" required />
+                                    <input type="time" name="slotTime" defaultValue={slotTime} id="" className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" placeholder="Slot Time" required />
+                                </div>
+                            </div>
+
+
+
+
 
                             <div className="col-span-full">
                                 <label className="text-sm font-medium text-gray-900 block mb-2">Test Details</label>
-                                <textarea id="testDetails" name="testDetails" rows="6" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-4" placeholder="Details" required></textarea>
+                                <textarea id="testDetails" name="testDetails" defaultValue={testDetails} rows="6" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-4" placeholder="Details" required></textarea>
                             </div>
                         </div>
 

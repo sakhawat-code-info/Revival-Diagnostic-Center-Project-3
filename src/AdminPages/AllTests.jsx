@@ -1,195 +1,184 @@
 import { Link } from "react-router-dom";
-import useAlltestData from "../hookPersonal/useAlltestData";
+import UseAllTestData from "../hookPersonal/UseAllTestData";
 
 
 
 const AllTests = () => {
 
 
-    const [allTest] = useAlltestData();
+    const [allTest] = UseAllTestData();
 
 
 
-    console.log(allTest);
+    // console.log(allTest);
 
 
 
-
-    // const {
-    //     testCatagory, testName, testImageURL, testDetails, testPrice, testAddDate, slotDate, slotTime
-    // } = 
+    // {
+    //     _id: '665eb77ebc5a3b8c2d470c99',
+    //     testCatagory: 'cardiovascular',
+    //     testName: 'Reed Lowery',
+    //     testImageURL: 'Explicabo Culpa pro',
+    //     testDetails: 'Enim ut eum officia ',
+    //     testPrice: '544',
+    //     testAddDate: '1970-02-11',
+    //     slotDate: '2008-11-04',
+    //     slotTime: '17:57'
+    //   },
 
 
     return (
         <div className="container mx-auto">
-            <div className="overflow-x-auto font-[sans-serif]">
-                <table className="min-w-full bg-white">
-                    <thead className="whitespace-nowrap bg-gray-100 rounded">
-                        <tr>
-                            <th className="p-4 text-left text-sm font-semibold text-black">
-                                No
-                            </th>
-                            <th className="p-4 text-left text-sm font-semibold text-black">
-                                Test Name
-                            </th>
-                            <th className="p-4 text-left text-sm font-semibold text-black">
-                                Details
-                            </th>
-                            <th className="p-4 text-left text-sm font-semibold text-black">
-                                Price
-                            </th>
-                            <th className="p-4 text-left text-sm font-semibold text-black">
-                                All Reservations
-                            </th>
-                            <th className="p-4 text-right text-sm font-semibold text-black">
-                                Action
-                            </th>
+            <section className="container px-4 mx-auto">
+                <div className="flex items-center gap-x-3">
+                    <h2 className="text-lg font-medium text-gray-800 dark:text-white">Test members</h2>
 
-                        </tr>
-                    </thead>
+                    <span className="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full dark:bg-gray-800 dark:text-blue-400">
+                        {allTest.length} Tests
+                    </span>
+                </div>
 
-                    <tbody className="whitespace-nowrap">
+                <div className="flex flex-col mt-6">
+                    <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                        <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+                            <div className="overflow-hidden border border-gray-200 dark:border-gray-700 md:rounded-lg">
+                                <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                                    <thead className="bg-gray-50 dark:bg-gray-800">
+                                        <tr>
+                                            <th scope="col" className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                                                <div className="flex items-center gap-x-3">
+                                                    <span>No</span>
+                                                </div>
+                                            </th>
 
-                        {
-                            allTest.map(item =>
-                                <tr key={item._id} className="hover:bg-gray-50">
-                                    <td className="p-4 text-sm text-black">
-                                        01
-                                    </td>
-                                    <td className="p-4 text-sm text-black">
-                                        <div className="flex items-center cursor-pointer w-max">
-                                            {/* <img src='testImageURL' className="w-9 h-9 rounded-md shrink-0" /> */}
-                                            <div className="ml-4">
-                                                <p className="text-sm text-black">{item.testName}</p>
-                                                <p className="text-xs text-gray-500 mt-1"></p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td className="p-4 text-sm text-black">
-                                        {item.testDetails.slice(0, 10)}
-                                    </td>
-                                    <td className="p-4 text-sm text-black">
-                                        {item.testPrice} tk (15%)
-                                        {/* <p className="text-xs text-gray-500 mt-1">550 tk</p> */}
-                                    </td>
-                                    <td className="p-4 text-sm text-green-700 font-extrabold text-center">
-                                        170
-                                        {/* <p className="text-xs text-gray-500 mt-1">Web UI/UX Design</p> */}
-                                    </td>
-                                    <td className="p-4 text-sm text-black">
-                                        <div className=" flex justify-end">
-                                            <Link to={'/adminDashboard/testDataUpdate'}
-                                                className="btn text-slate-800 hover:text-blue-600 text-sm bg-white hover:bg-slate-100 border border-slate-200 rounded-l-lg font-medium px-4 py-2 inline-flex space-x-1 items-center">
-                                                <span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                    stroke="currentColor" className="w-6 h-6">
-                                                    <path
-                                                        d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
-                                                </svg>
-                                                </span>
-                                                <span className="hidden md:inline-block">Edit</span>
-                                            </Link>
-
-                                            <button
-                                                className="text-slate-800 hover:text-blue-600 text-sm bg-white hover:bg-slate-100 border border-slate-200 rounded-r-lg font-medium px-4 py-2 inline-flex space-x-1 items-center">
-                                                <span>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                        stroke="currentColor" className="w-6 h-6">
-                                                        <path
-                                                            d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
-                                                    </svg>
-                                                </span>
-                                                <span className="hidden md:inline-block">Delete</span>
-                                            </button>
-                                        </div>
-                                    </td>
-
-                                </tr>
-                            )
-                        }
+                                            <th scope="col" className="px-12 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                                                <button className="flex items-center gap-x-2">
+                                                    <span>Test Name</span>
 
 
-                        <tr className="hover:bg-gray-50">
-                            <td className="p-4 text-sm text-black">
-                                01
-                            </td>
-                            <td className="p-4 text-sm text-black">
-                                <div className="flex items-center cursor-pointer w-max">
-                                    {/* <img src='testImageURL' className="w-9 h-9 rounded-md shrink-0" /> */}
-                                    <div className="ml-4">
-                                        <p className="text-sm text-black">FBS testName</p>
-                                        <p className="text-xs text-gray-500 mt-1">Blood Catagory testCatagory</p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td className="p-4 text-sm text-black">
-                                testDetails
-                                testDetails
-                                testDetails
-                                testDetails
-                                testDetails
-                            </td>
-                            <td className="p-4 text-sm text-black">
-                                470 tk (15%) testPrice
-                                <p className="text-xs text-gray-500 mt-1">550 tk</p>
-                            </td>
-                            <td className="p-4 text-sm text-green-700 font-extrabold text-center">
-                                170
-                                {/* <p className="text-xs text-gray-500 mt-1">Web UI/UX Design</p> */}
-                            </td>
-                            <td className="p-4 text-sm text-black">
-                                <div className=" flex justify-end">
-                                    <Link to={'/adminDashboard/testDataUpdate'}
-                                        className="btn text-slate-800 hover:text-blue-600 text-sm bg-white hover:bg-slate-100 border border-slate-200 rounded-l-lg font-medium px-4 py-2 inline-flex space-x-1 items-center">
-                                        <span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                            stroke="currentColor" className="w-6 h-6">
-                                            <path
-                                                d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
-                                        </svg>
-                                        </span>
-                                        <span className="hidden md:inline-block">Edit</span>
-                                    </Link>
+                                                </button>
+                                            </th>
 
-                                    <button
-                                        className="text-slate-800 hover:text-blue-600 text-sm bg-white hover:bg-slate-100 border border-slate-200 rounded-r-lg font-medium px-4 py-2 inline-flex space-x-1 items-center">
-                                        <span>
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                stroke="currentColor" className="w-6 h-6">
-                                                <path
-                                                    d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
-                                            </svg>
-                                        </span>
-                                        <span className="hidden md:inline-block">Delete</span>
-                                    </button>
-                                </div>
-                            </td>
-
-                        </tr>
+                                            <th scope="col" className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                                                <button className="flex items-center gap-x-2">
+                                                    <span>Details</span>
 
 
-                    </tbody>
-                </table>
+                                                </button>
+                                            </th>
 
-                <div className="md:flex m-4">
-                    <p className="text-sm text-gray-500 flex-1">Showind 1 to 5 of 100 entries</p>
-                    <div className="flex items-center max-md:mt-4">
-                        <p className="text-sm text-gray-500">Display</p>
+                                            <th scope="col" className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">Price</th>
 
-                        <select className="text-sm text-gray-500 border border-gray-400 rounded px-1 py-2 mx-4 outline-none">
-                            <option>5</option>
-                            <option>10</option>
-                            <option>20</option>
-                            <option>50</option>
-                            <option>100</option>
-                        </select>
+                                            <th scope="col" className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">Teams</th>
+                                            <th scope="col" className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">All Reservations</th>
 
-                        <div className="border flex rounded divide-x-2 border-gray-400 divide-gray-400">
-                            <button type="button" className="px-4 py-2 hover:bg-gray-50 text-sm">Previous</button>
-                            <button type="button" className="px-4 py-2 hover:bg-gray-50 text-sm">Next</button>
+                                            <th scope="col" className="relative py-3.5 px-4">
+                                                <span className="sr-only">Edit</span>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
+
+
+
+
+                                        {
+                                            allTest?.map((item, index = 1) => <tr key={item._id}>
+                                                <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                                                    {index++}
+                                                </td>
+                                                <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
+                                                    <div className="inline-flex items-center gap-x-3">
+                                                        {/* <input type="checkbox" className="text-blue-500 border-gray-300 rounded dark:bg-gray-900 dark:ring-offset-gray-900 dark:border-gray-700" /> */}
+
+                                                        <div className="flex items-center gap-x-2">
+                                                            <img className="object-cover w-10 h-10 rounded-full" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80" alt="" />
+                                                            <div>
+                                                                <h2 className="font-medium text-gray-800 dark:text-white ">{item.testName}</h2>
+                                                                <p className="text-sm font-normal text-gray-600 dark:text-gray-400">{item.testCatagory}</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                                                    {item.testDetails.slice(0, 10)}
+                                                </td>
+                                                <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                                                    {item.testPrice} tk (15%)
+                                                </td>
+
+                                                <td className="px-12 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
+                                                    <div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-emerald-100/60 dark:bg-gray-800">
+                                                        <span className="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+
+                                                        <h2 className="text-sm font-normal text-emerald-500">170</h2>
+                                                    </div>
+                                                </td>
+
+
+                                                <td className="px-4 py-4 text-sm whitespace-nowrap">
+                                                    <div className="flex items-center gap-x-6">
+                                                        <button className="text-gray-500 transition-colors duration-200 dark:hover:text-red-500 dark:text-gray-300 hover:text-red-500 focus:outline-none">
+                                                            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-5 h-5">
+                                                                <path d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+                                                            </svg>
+                                                        </button>
+
+                                                        <Link to={`/adminDashboard/testDataUpdate/${item._id}`}>
+                                                            <button className="text-gray-500 transition-colors duration-200 dark:hover:text-yellow-500 dark:text-gray-300 hover:text-yellow-500 focus:outline-none">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-5 h-5">
+                                                                    <path d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
+                                                                </svg>
+                                                            </button>
+                                                        </Link>
+                                                    </div>
+                                                </td>
+                                            </tr>)
+                                        }
+
+
+
+
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
+
+                <div className="flex items-center justify-between mt-6">
+                    <a href="#" className="flex items-center px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-5 h-5 rtl:-scale-x-100">
+                            <path d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18" />
+                        </svg>
+
+                        <span>
+                            previous
+                        </span>
+                    </a>
+
+                    <div className="items-center hidden lg:flex gap-x-3">
+                        <a href="#" className="px-2 py-1 text-sm text-blue-500 rounded-md dark:bg-gray-800 bg-blue-100/60">1</a>
+                        <a href="#" className="px-2 py-1 text-sm text-gray-500 rounded-md dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100">2</a>
+                        <a href="#" className="px-2 py-1 text-sm text-gray-500 rounded-md dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100">3</a>
+                        <a href="#" className="px-2 py-1 text-sm text-gray-500 rounded-md dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100">...</a>
+                        <a href="#" className="px-2 py-1 text-sm text-gray-500 rounded-md dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100">12</a>
+                        <a href="#" className="px-2 py-1 text-sm text-gray-500 rounded-md dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100">13</a>
+                        <a href="#" className="px-2 py-1 text-sm text-gray-500 rounded-md dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100">14</a>
+                    </div>
+
+                    <a href="#" className="flex items-center px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800">
+                        <span>
+                            Next
+                        </span>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-5 h-5 rtl:-scale-x-100">
+                            <path d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
+                        </svg>
+                    </a>
+                </div>
+            </section >
+        </div >
     );
 };
 
