@@ -1,9 +1,20 @@
 import { Link } from "react-router-dom";
+import UseAllTestData from "../hookPersonal/UseAllTestData";
 
 
 const AllTests = () => {
 
-    // console.log(testCatagory, testName, testImageURL, testDetails, testPrice, testAddDate)
+
+    const [allTest] = UseAllTestData();
+
+    console.log(allTest);
+
+
+
+
+    // const {
+    //     testCatagory, testName, testImageURL, testDetails, testPrice, testAddDate, slotDate, slotTime
+    // } = 
 
 
     return (

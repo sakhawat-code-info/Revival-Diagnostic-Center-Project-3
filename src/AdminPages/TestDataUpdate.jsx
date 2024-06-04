@@ -5,16 +5,22 @@ const TestDataUpdate = () => {
     const handleTestDataUpdate = (e) => {
         e.preventDefault();
         const form = e.target;
+
         const testCatagory = form.testCatagory.value;
         const testName = form.testName.value;
         const testImageURL = form.testImageURL.value;
         const testDetails = form.testDetails.value;
         const testPrice = form.testPrice.value;
         const testAddDate = form.testAddDate.value;
+        const slotDate = form.slotDate.value;
+        const slotTime = form.slotTime.value;
 
-        console.log(testCatagory, testName, testImageURL, testDetails, testPrice, testAddDate)
+        const updateTestData = {
+            testCatagory, testName, testImageURL, testDetails, testPrice, testAddDate, slotDate, slotTime
+        }
+        console.log(updateTestData)
+
     }
-
     return (
         <div className="container mx-auto">
             <div className="bg-white border-4 rounded-lg shadow relative m-10">
