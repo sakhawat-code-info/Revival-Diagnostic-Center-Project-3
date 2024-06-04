@@ -51,30 +51,26 @@ const AllTests = () => {
                     <tbody className="whitespace-nowrap">
 
                         {
-                            allTest?.map(item => {
+                            allTest.map(item =>
                                 <tr key={item._id} className="hover:bg-gray-50">
                                     <td className="p-4 text-sm text-black">
-                                        {item._id}
+                                        01
                                     </td>
                                     <td className="p-4 text-sm text-black">
                                         <div className="flex items-center cursor-pointer w-max">
                                             {/* <img src='testImageURL' className="w-9 h-9 rounded-md shrink-0" /> */}
                                             <div className="ml-4">
-                                                <p className="text-sm text-black">FBS testName</p>
-                                                <p className="text-xs text-gray-500 mt-1">Blood Catagory testCatagory</p>
+                                                <p className="text-sm text-black">{item.testName}</p>
+                                                <p className="text-xs text-gray-500 mt-1"></p>
                                             </div>
                                         </div>
                                     </td>
                                     <td className="p-4 text-sm text-black">
-                                        testDetails
-                                        testDetails
-                                        testDetails
-                                        testDetails
-                                        testDetails
+                                        {item.testDetails.slice(0, 10)}
                                     </td>
                                     <td className="p-4 text-sm text-black">
-                                        470 tk (15%) testPrice
-                                        <p className="text-xs text-gray-500 mt-1">550 tk</p>
+                                        {item.testPrice} tk (15%)
+                                        {/* <p className="text-xs text-gray-500 mt-1">550 tk</p> */}
                                     </td>
                                     <td className="p-4 text-sm text-green-700 font-extrabold text-center">
                                         170
@@ -108,7 +104,7 @@ const AllTests = () => {
                                     </td>
 
                                 </tr>
-                            })
+                            )
                         }
 
 
