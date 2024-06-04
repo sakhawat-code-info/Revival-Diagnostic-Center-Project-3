@@ -1,3 +1,5 @@
+import axios from "axios";
+import Swal from "sweetalert2";
 
 
 const AddNewTest = () => {
@@ -7,14 +9,51 @@ const AddNewTest = () => {
     const handleNewTestData = (e) => {
         e.preventDefault();
         const form = e.target;
+
         const testCatagory = form.testCatagory.value;
         const testName = form.testName.value;
         const testImageURL = form.testImageURL.value;
         const testDetails = form.testDetails.value;
         const testPrice = form.testPrice.value;
         const testAddDate = form.testAddDate.value;
+        const slotDate = form.slotDate.value;
+        const slotTime = form.slotTime.value;
 
-        console.log(testCatagory, testName, testImageURL, testDetails, testPrice, testAddDate)
+        const testData = {
+            testCatagory, testName, testImageURL, testDetails, testPrice, testAddDate, slotDate, slotTime
+        }
+
+
+        axios.post('http://localhost:5000/testData', testData)
+            .then(data => {
+                console.log(data.data.insertedId)
+                if (data.data.insertedId) {
+                    Swal.fire({
+                        // position: "top-end",
+                        icon: "success",
+                        title: "Test Data Saved Successfully",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    // navigate('/myQueries');
+                }
+                form.reset();
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+
+
+
+
+
+
+
+
+
+
+
+
     }
 
 
@@ -72,6 +111,22 @@ const AddNewTest = () => {
                                 <label className="text-sm font-medium text-gray-900 block mb-2">Price</label>
                                 <input type="number" name="testPrice" id="testPrice" className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" placeholder="$2300" required />
                             </div>
+
+
+                            <div className="col-span-6 sm:col-span-3 ">
+                                <label className="text-sm font-medium text-gray-900 block mb-2">Slots</label>
+
+
+                                {/* <input type="date" name="slotDate" required /> */}
+                                {/* <input type="time" name="slotTime" required /> */}
+
+                                <div className="flex gap-6">
+                                    <input type="date" name="slotDate" id="" className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" placeholder="Slot Date" required />
+                                    <input type="time" name="slotTime" id="" className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" placeholder="Slot Time" required />
+                                </div>
+                            </div>
+
+
 
                             <div className="col-span-full">
                                 <label className="text-sm font-medium text-gray-900 block mb-2">Test Details</label>
