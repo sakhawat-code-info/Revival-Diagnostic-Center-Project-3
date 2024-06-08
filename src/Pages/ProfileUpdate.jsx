@@ -1,14 +1,90 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-// import UseAuth from "../hookPersonal/UseAuth";
-// import Swal from "sweetalert2";
+import UseAuth from "../hookPersonal/UseAuth";
+import Swal from "sweetalert2";
 import 'react-toastify/dist/ReactToastify.css';
+import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
+import useAxiosPublic from "../hookPersonal/useAxiosPublic";
 
 const ProfileUpdate = () => {
-    // const navigate = useNavigate();
-    // const { createUser } = UseAuth();
+    const axiosPublic = useAxiosPublic();
 
-    const handleUpdateProfile = (event) => {
+    const navigate = useNavigate();
+    const { user } = UseAuth();
+
+
+    const { isPending, error, data } = useQuery({
+        queryKey: ['repoData'],
+        queryFn: () =>
+            fetch(`http://localhost:5000/getSingleUserData/${user.email}`)
+                .then((res) => res.json())
+                .then(data => {
+                    return data;
+                })
+    })
+
+
+
+    const [districtName, setDistrictName] = useState('');
+    const [subDistrictName, setSubDistrictName] = useState('');
+
+
+    // for district 
+    const { data: districtData = [], } = useQuery({
+        queryKey: ['districtData'],
+        queryFn: () =>
+            fetch('districts.json')
+                .then((res) => res.json())
+                .then(data => {
+                    return (data);
+                })
+
+    })
+
+    const handleDistrict = (e) => {
+        const countryName = e.target.value;
+        setDistrictName(countryName);
+    }
+
+    // console.log(districtName)
+
+    // for sub-district 
+    const { data: upazilas = [] } = useQuery({
+        queryKey: ['upazila'],
+        queryFn: () =>
+            fetch('upazilas.json')
+                .then((res) => res.json())
+                .then(data => {
+                    return (data);
+                })
+
+    })
+
+    const canSelectUpazilas = upazilas.filter(item => item.district_id === districtName);
+
+    const handleSubDistrict = (e) => {
+        const subDistrictName = e.target.value;
+        setSubDistrictName(subDistrictName);
+    }
+
+    // for union
+    const { data: unions = [] } = useQuery({
+        queryKey: ['unions'],
+        queryFn: () =>
+            fetch('unions.json')
+                .then((res) => res.json())
+                .then(data => {
+                    return (data);
+                })
+
+    })
+
+    const canSelectUnions = unions.filter(item => item.upazilla_id === subDistrictName)
+
+
+
+    const handleUpdateProfile = async (event) => {
 
         event.preventDefault();
         const form = event.target
@@ -16,26 +92,40 @@ const ProfileUpdate = () => {
         const name = form.name.value;
         const phoneNumber = form.phoneNumber.value;
         const email = form.email.value;
-        const district = form.district.value;
-        const subDistrict = form.subDistrict.value;
+        const district = districtData.find(item => item.id === districtName);
+        const districtN = district.name;
+        const subDistrict = upazilas.find(item => item.id === subDistrictName);
+        const subDitstrictN = subDistrict.name
+        const unionId = form.union.value;
+        const unionName = unions.find(item => item.id === unionId);
+        const union = unionName.name;
+
         const age = form.age.value;
         const gender = form.gender.value;
         const bloodGroup = form.bloodGroup.value;
         const password = form.password.value;
         const confirmPassword = form.confirmPassword.value;
+        const status = "active";
 
-        console.log(
+        const registerDataUpdate = {
             name,
             phoneNumber,
             email,
-            district,
-            subDistrict,
+
+            districtN,
+            subDitstrictN,
+            union,
+
             age,
             gender,
             bloodGroup,
+
             password,
             confirmPassword,
-        )
+            status
+        }
+        // console.log(registerData)
+
 
         //     // password checking 
         if (password === confirmPassword) {
@@ -51,12 +141,42 @@ const ProfileUpdate = () => {
             }
         } else {
             toast.error('Password & Confirm Password is not same')
+            return;
+        }
+
+        const updateResult = await axiosPublic.patch(`/updateRegisterData/${data._id}`, registerDataUpdate)
+        console.log(updateResult)
+        if (updateResult.data.matchedCount) {
+            Swal.fire({
+                title: "Do you want to save the changes?",
+                showDenyButton: true,
+                showCancelButton: true,
+                confirmButtonText: "Save",
+                denyButtonText: `Don't save`
+            }).then((result) => {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+                    Swal.fire("Saved!", "", "success");
+                    // navigate('/myQueries');
+                } else if (result.isDenied) {
+                    Swal.fire("Changes are not saved", "", "info");
+                    // navigate('/myQueries');
+                }
+            });
         }
 
 
 
-    }
 
+
+
+
+        if (isPending) return 'Loading...'
+
+        if (error) return 'An error has occurred: ' + error.message
+
+
+    }
 
 
     return (
@@ -70,44 +190,58 @@ const ProfileUpdate = () => {
                     <form onSubmit={handleUpdateProfile}>
                         <div className="mb-4">
                             <label className="block text-gray-700 font-medium mb-2">Name</label>
-                            <input type="text" id="name" name="name" placeholder="Name"
+                            <input type="text" id="name" name="name" placeholder="Name" defaultValue={data.name}
                                 className="border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-400" required />
                         </div>
                         <div className="mb-4">
                             <label className="block text-gray-700 font-medium mb-2">Phone Number</label>
-                            <input type="number" id="phoneNumber" name="phoneNumber" placeholder="+88 01XX-XX XX XX"
+                            <input type="number" id="phoneNumber" name="phoneNumber" defaultValue={data.phoneNumber} placeholder="+88 01XX-XX XX XX"
                                 className="border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-400" required />
                         </div>
                         <div className="mb-4">
                             <label className="block text-gray-700 font-medium mb-2">Email</label>
-                            <input type="email" id="email" name="email" placeholder="abc@abc.com"
+                            <input type="email" id="email" name="email" defaultValue={data.email} placeholder="abc@abc.com"
                                 className="border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-400" required />
                         </div>
                         <div className="mb-4">
                             <label className="block text-gray-700 font-medium mb-2">District</label>
-                            <select id="district" name="district"
+                            <select id="district" name="district" onChange={(e) => handleDistrict(e)}
                                 className="border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-400" required>
                                 <option value="">Select District</option>
-                                <option value="rajbari">Rajbari</option>
+                                {
+                                    districtData?.map(item => <option key={item.id} value={item.id}>{item.name}</option>)
+                                }
                             </select>
                         </div>
                         <div className="mb-4">
                             <label className="block text-gray-700 font-medium mb-2">Sub-District</label>
-                            <select id="SubDistrict" name="subDistrict"
+                            <select id="SubDistrict" name="subDistrict" onChange={(e) => handleSubDistrict(e)}
                                 className="border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-400" required>
                                 <option value="">Select Sub-District</option>
-                                <option value="baliakandi">Baliakandi</option>
+                                {
+                                    canSelectUpazilas?.map(item => <option key={item.id} value={item.id}>{item.name}</option>)
+                                }
+                            </select>
+                        </div>
+                        <div className="mb-4">
+                            <label className="block text-gray-700 font-medium mb-2">Union</label>
+                            <select id="union" name="union"
+                                className="border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-400" required>
+                                <option value="">Select Union</option>
+                                {
+                                    canSelectUnions?.map(item => <option key={item.id} value={item.id}>{item.name}</option>)
+                                }
                             </select>
                         </div>
 
                         <div className="mb-4">
                             <label className="block text-gray-700 font-medium mb-2">Age</label>
-                            <input type="number" id="age" name="age"
+                            <input type="number" id="age" name="age" defaultValue={data.age}
                                 className="border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-400" required />
                         </div>
                         <div className="mb-4">
                             <label className="block text-gray-700 font-medium mb-2">Gender</label>
-                            <select id="gender" name="gender"
+                            <select id="gender" name="gender" defaultValue={data.gender}
                                 className="border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-400" required>
                                 <option value="">Select gender</option>
                                 <option value="male">Male</option>
@@ -169,7 +303,7 @@ const ProfileUpdate = () => {
                         <div className="mb-4">
                             <label className="block text-gray-700 font-medium mb-2 relative">Password</label>
                             <div className="relative flex items-center">
-                                <input type="password" name="password" placeholder="*****"
+                                <input type="password" name="password" placeholder="*****" defaultValue={data.password}
                                     className="border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-400" required />
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="#bbb" stroke="#bbb"
                                     className="w-[18px] h-[18px] absolute right-4 cursor-pointer" viewBox="0 0 128 128">
@@ -182,7 +316,7 @@ const ProfileUpdate = () => {
                         <div className="mb-4">
                             <label className="block text-gray-700 font-medium mb-2">Confirm Password</label>
                             <div className="relative flex items-center">
-                                <input type="password" name="confirmPassword" placeholder="*****"
+                                <input type="password" name="confirmPassword" placeholder="*****" defaultValue={data.confirmPassword}
                                     className="border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-400" required />
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="#bbb" stroke="#bbb"
                                     className="w-[18px] h-[18px] absolute right-4 cursor-pointer" viewBox="0 0 128 128">
@@ -204,31 +338,31 @@ const ProfileUpdate = () => {
                     <textarea id="message" name="message"
                         className="border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-400" rows="5"></textarea>
                 </div> */}
-                        <div className="flex items-center justify-between gap-4">
+                        <div className="flex flex-col items-center justify-center">
+                            {/* <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">Submit</button> */}
 
-
-                            <button type="submit" className="relative w-1/3 mt-4  inline-flex items-center justify-center p-4 px-6 py-2 overflow-hidden font-medium text-black transition duration-300 ease-out border-2 border-teal-600 rounded-full shadow-md group">
+                            <button type="submit" className="relative w-2/3 mt-4  inline-flex items-center justify-center p-4 px-6 py-3 overflow-hidden font-medium text-black transition duration-300 ease-out border-2 border-teal-600 rounded-full shadow-md group">
                                 <span className="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-x-full bg-teal-600 group-hover:translate-x-0 ease">
-                                    Update Now &nbsp;
+                                    Lets Go &nbsp;
                                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                                 </span>
-                                <span className="absolute flex items-center justify-center w-full h-full text-black font-extrabold transition-all duration-300 transform group-hover:translate-x-full ease">Update</span>
+                                <span className="absolute flex items-center justify-center w-full h-full text-black font-extrabold transition-all duration-300 transform group-hover:translate-x-full ease">Register Now</span>
                                 <span className="relative invisible">Button Text</span>
                             </button>
 
 
-                            <Link to={'/profile'} className="">
-                                <button
-                                    className="btn p-4 px-6 py-3 rounded-full text-white text-sm tracking-wider font-medium border border-current outline-none bg-red-700 hover:bg-red-800 active:bg-red-700">
-                                    X
-                                </button>
-                            </Link>
 
 
 
 
 
 
+                            <div className="flex gap-2 pt-5">
+                                <p className="text-gray-600 text-sm">Already have an account?</p>
+                                <Link to={'/login'} className="text-gray-600 text-sm underline">
+                                    Login
+                                </Link>
+                            </div>
                         </div>
 
                     </form>

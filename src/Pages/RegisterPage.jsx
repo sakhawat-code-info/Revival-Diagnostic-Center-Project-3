@@ -3,11 +3,74 @@ import { ToastContainer, toast } from "react-toastify";
 import UseAuth from "../hookPersonal/UseAuth";
 import Swal from "sweetalert2";
 import 'react-toastify/dist/ReactToastify.css';
+import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
+import useAxiosPublic from "../hookPersonal/useAxiosPublic";
 
 const RegisterPage = () => {
+    const axiosPublic = useAxiosPublic();
 
     const navigate = useNavigate();
     const { createUser } = UseAuth();
+
+
+    const [districtName, setDistrictName] = useState('');
+    const [subDistrictName, setSubDistrictName] = useState('');
+
+
+    // for district 
+    const { data: districtData = [], } = useQuery({
+        queryKey: ['districtData'],
+        queryFn: () =>
+            fetch('districts.json')
+                .then((res) => res.json())
+                .then(data => {
+                    return (data);
+                })
+
+    })
+
+    const handleDistrict = (e) => {
+        const countryName = e.target.value;
+        setDistrictName(countryName);
+    }
+
+    // console.log(districtName)
+
+    // for sub-district 
+    const { data: upazilas = [] } = useQuery({
+        queryKey: ['upazila'],
+        queryFn: () =>
+            fetch('upazilas.json')
+                .then((res) => res.json())
+                .then(data => {
+                    return (data);
+                })
+
+    })
+
+    const canSelectUpazilas = upazilas.filter(item => item.district_id === districtName);
+
+    const handleSubDistrict = (e) => {
+        const subDistrictName = e.target.value;
+        setSubDistrictName(subDistrictName);
+    }
+
+    // for union
+    const { data: unions = [] } = useQuery({
+        queryKey: ['unions'],
+        queryFn: () =>
+            fetch('unions.json')
+                .then((res) => res.json())
+                .then(data => {
+                    return (data);
+                })
+
+    })
+
+    const canSelectUnions = unions.filter(item => item.upazilla_id === subDistrictName)
+
+
 
     const handleRegisterForm = (event) => {
 
@@ -17,26 +80,40 @@ const RegisterPage = () => {
         const name = form.name.value;
         const phoneNumber = form.phoneNumber.value;
         const email = form.email.value;
-        const district = form.district.value;
-        const subDistrict = form.subDistrict.value;
+        const district = districtData.find(item => item.id === districtName);
+        const districtN = district.name;
+        const subDistrict = upazilas.find(item => item.id === subDistrictName);
+        const subDitstrictN = subDistrict.name
+        const unionId = form.union.value;
+        const unionName = unions.find(item => item.id === unionId);
+        const union = unionName.name;
+
         const age = form.age.value;
         const gender = form.gender.value;
         const bloodGroup = form.bloodGroup.value;
         const password = form.password.value;
         const confirmPassword = form.confirmPassword.value;
+        const status = "active";
 
-        console.log(
+        const registerData = {
             name,
             phoneNumber,
             email,
-            district,
-            subDistrict,
+
+            districtN,
+            subDitstrictN,
+            union,
+
             age,
             gender,
             bloodGroup,
+
             password,
             confirmPassword,
-        )
+            status
+        }
+        // console.log(registerData)
+
 
         //     // password checking 
         if (password === confirmPassword) {
@@ -52,14 +129,27 @@ const RegisterPage = () => {
             }
         } else {
             toast.error('Password & Confirm Password is not same')
+            return;
         }
 
 
-        //     // register data taking 
+        // register data taking 
         createUser(email, password)
-            .then((userCredential) => {
+            .then(async (userCredential) => {
                 const userInfo = userCredential.user;
                 console.log(userInfo)
+
+                const registerDone = await axiosPublic.post('/registerData', registerData);
+                if (registerDone.data.insertedId) {
+                    Swal.fire({
+
+                        // position: "top-end",
+                        icon: "success",
+                        title: "Registration Successful. Please Login",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
                 // takeProfileNameAndPhotoURL(name, photoURL)
                 //     .then(() => {
 
@@ -68,13 +158,7 @@ const RegisterPage = () => {
                 //     });
 
                 // setUser(userInfo);
-                Swal.fire({
-                    // position: "top-end",
-                    icon: "success",
-                    title: "Registration Successful. Please Login",
-                    showConfirmButton: false,
-                    timer: 1500
-                });
+
                 navigate('/login');
             })
             .catch((error) => {
@@ -111,18 +195,32 @@ const RegisterPage = () => {
                     </div>
                     <div className="mb-4">
                         <label className="block text-gray-700 font-medium mb-2">District</label>
-                        <select id="district" name="district"
+                        <select id="district" name="district" onChange={(e) => handleDistrict(e)}
                             className="border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-400" required>
                             <option value="">Select District</option>
-                            <option value="rajbari">Rajbari</option>
+                            {
+                                districtData?.map(item => <option key={item.id} value={item.id}>{item.name}</option>)
+                            }
                         </select>
                     </div>
                     <div className="mb-4">
                         <label className="block text-gray-700 font-medium mb-2">Sub-District</label>
-                        <select id="SubDistrict" name="subDistrict"
+                        <select id="SubDistrict" name="subDistrict" onChange={(e) => handleSubDistrict(e)}
                             className="border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-400" required>
                             <option value="">Select Sub-District</option>
-                            <option value="baliakandi">Baliakandi</option>
+                            {
+                                canSelectUpazilas?.map(item => <option key={item.id} value={item.id}>{item.name}</option>)
+                            }
+                        </select>
+                    </div>
+                    <div className="mb-4">
+                        <label className="block text-gray-700 font-medium mb-2">Union</label>
+                        <select id="union" name="union"
+                            className="border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-400" required>
+                            <option value="">Select Union</option>
+                            {
+                                canSelectUnions?.map(item => <option key={item.id} value={item.id}>{item.name}</option>)
+                            }
                         </select>
                     </div>
 
