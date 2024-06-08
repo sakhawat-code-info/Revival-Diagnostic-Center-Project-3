@@ -98,8 +98,9 @@ export const router = createBrowserRouter([
                 element: <AllBanner />,
             },
             {
-                path: "/adminDashboard/bannerDataUpdate",
+                path: "/adminDashboard/bannerDataUpdate/:updateId",
                 element: <BannerDataUpdate />,
+                loader: ({ params }) => fetch(`http://localhost:5000/getSingleBannerData/${params.updateId}`)
             },
             {
                 path: "/adminDashboard/bookingRatioDeliveryReportChart",

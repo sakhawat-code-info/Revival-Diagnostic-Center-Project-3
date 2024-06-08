@@ -1,8 +1,12 @@
+import Swal from "sweetalert2";
+import useAxiosSecure from "../hookPersonal/useAxiosSecure";
 
 
 const AddBanner = () => {
 
-    const handleNewBanner = (e) => {
+    const axiosSecure = useAxiosSecure();
+
+    const handleNewBanner = async (e) => {
         e.preventDefault();
         const form = e.target;
 
@@ -13,10 +17,11 @@ const AddBanner = () => {
         const bannerCouponCodeName = form.bannerCouponCodeName.value;
         const bannerCouponRate = form.bannerCouponRate.value;
         const bannerActualRate = form.bannerActualRate.value;
-        const bannerIsActive = form.bannerIsActive.value;
+        const bannerIsActive = false;
 
 
-        console.log(
+
+        const bannerData = {
             bannerName,
             bannerImageLink,
             bannerTitle,
@@ -27,7 +32,35 @@ const AddBanner = () => {
 
             bannerActualRate,
             bannerIsActive,
-        )
+        }
+
+
+
+        const addANewTest = await axiosSecure.post('/bannerData', bannerData)
+        if (addANewTest.data.insertedId) {
+            Swal.fire({
+                // position: "top-end",
+                icon: "success",
+                title: "Test Data Saved Successfully",
+                showConfirmButton: false,
+                timer: 1500
+            });
+            // navigate('/myQueries');
+            form.reset();
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 
     return (
@@ -45,25 +78,9 @@ const AddBanner = () => {
 
 
 
-                    {/* 
-bannerName , 
-bannerImageLink, 
-bannerTitle ,
-bannerDescription, 
-bannerCouponCodeName, 
-bannerCouponRate,
-bannerActualRate, 
-bannerIsActive, 
-
-*/}
-
                     <div className="p-6 space-y-6">
-
-
                         <div className="grid grid-cols-6 gap-6">
-
-
-                            <div className="col-span-full mb-4">
+                            {/* <div className="col-span-full mb-4">
                                 <label className="text-sm font-medium text-gray-900 block mb-2">Is Active</label>
                                 <select id="bannerIsActive" name="bannerIsActive"
                                     className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" required>
@@ -71,14 +88,7 @@ bannerIsActive,
                                     <option value="true">Yes</option>
                                     <option value="false">No</option>
                                 </select>
-
-                            </div>
-
-
-
-
-
-
+                            </div> */}
                             <div className="col-span-6 sm:col-span-3">
                                 <label className="text-sm font-medium text-gray-900 block mb-2">Name</label>
                                 <input type="text" name="bannerName" id="bannerName" className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" placeholder="Name" required />
@@ -102,7 +112,7 @@ bannerIsActive,
                                 <input type="number" name="bannerCouponRate" id="bannerCouponRate" className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" placeholder="00.00 Tk" required />
                             </div>
                             <div className="col-span-6 sm:col-span-3">
-                                <label className="text-sm font-medium text-gray-900 block mb-2">Coupon Rate</label>
+                                <label className="text-sm font-medium text-gray-900 block mb-2">Actual Rate</label>
                                 <input type="number" name="bannerActualRate" id="bannerActualRate" className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" placeholder="00.00 Tk" required />
                             </div>
 

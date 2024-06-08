@@ -1,11 +1,13 @@
-import axios from "axios";
+
 import { Link, useLoaderData } from "react-router-dom";
+import useAxiosSecure from "../hookPersonal/useAxiosSecure";
 import Swal from "sweetalert2";
+
 
 
 const TestDataUpdate = () => {
 
-
+    const axiosSecure = useAxiosSecure();
 
     const data = useLoaderData();
 
@@ -22,7 +24,7 @@ const TestDataUpdate = () => {
         slotTime,
     } = data;
 
-    const handleTestDataUpdate = (e) => {
+    const handleTestDataUpdate = async (e) => {
         e.preventDefault();
         const form = e.target;
 
@@ -40,29 +42,30 @@ const TestDataUpdate = () => {
         }
 
         // console.log(updateTestData)
-        axios.put(`http://localhost:5000/updateAddQueryData/${_id}`, updateTestData)
-            .then(res => {
-                // console.log(res.data)
-                if (res.data.matchedCount) {
-                    Swal.fire({
-                        title: "Do you want to save the changes?",
-                        showDenyButton: true,
-                        showCancelButton: true,
-                        confirmButtonText: "Save",
-                        denyButtonText: `Don't save`
-                    }).then((result) => {
-                        /* Read more about isConfirmed, isDenied below */
-                        if (result.isConfirmed) {
-                            Swal.fire("Saved!", "", "success");
-                            // navigate('/myQueries');
-                        } else if (result.isDenied) {
-                            Swal.fire("Changes are not saved", "", "info");
-                            // navigate('/myQueries');
-                        }
-                    });
-                }
 
-            })
+        const updateResult = await axiosSecure.patch(`/updateAddQueryData/${_id}`, updateTestData)
+        console.log(updateResult)
+        if (updateResult.data.matchedCount) {
+            Swal.fire({
+                title: "Do you want to save the changes?",
+                showDenyButton: true,
+                showCancelButton: true,
+                confirmButtonText: "Save",
+                denyButtonText: `Don't save`
+            }).then((result) => {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+                    Swal.fire("Saved!", "", "success");
+                    // navigate('/myQueries');
+                } else if (result.isDenied) {
+                    Swal.fire("Changes are not saved", "", "info");
+                    // navigate('/myQueries');
+                }
+            });
+        }
+
+
+
 
     }
     return (

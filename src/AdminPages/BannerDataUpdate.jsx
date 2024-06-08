@@ -1,7 +1,34 @@
+import { useLoaderData } from "react-router-dom";
+import useAxiosSecure from "../hookPersonal/useAxiosSecure";
+import Swal from "sweetalert2";
 
 
 const BannerDataUpdate = () => {
-    const handleUpdateBannerData = (e) => {
+
+    const axiosSecure = useAxiosSecure();
+
+    const data = useLoaderData();
+
+    // console.log(data)
+
+    const {
+        _id,
+
+        bannerName,
+        bannerImageLink,
+        bannerTitle,
+
+        bannerDescription,
+        bannerCouponCodeName,
+        bannerCouponRate,
+
+        bannerActualRate,
+        bannerIsActive,
+    } = data;
+
+
+
+    const handleUpdateBannerData = async (e) => {
         e.preventDefault();
         const form = e.target;
 
@@ -15,7 +42,7 @@ const BannerDataUpdate = () => {
         const bannerIsActive = form.bannerIsActive.value;
 
 
-        console.log(
+        const updateBannerData = {
             bannerName,
             bannerImageLink,
             bannerTitle,
@@ -26,7 +53,31 @@ const BannerDataUpdate = () => {
 
             bannerActualRate,
             bannerIsActive,
-        )
+        }
+
+
+        const updateResult = await axiosSecure.patch(`/updateBannerData/${_id}`, updateBannerData)
+        console.log(updateResult)
+        if (updateResult.data.matchedCount) {
+            Swal.fire({
+                title: "Do you want to save the changes?",
+                showDenyButton: true,
+                showCancelButton: true,
+                confirmButtonText: "Save",
+                denyButtonText: `Don't save`
+            }).then((result) => {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+                    Swal.fire("Saved!", "", "success");
+                    // navigate('/myQueries');
+                } else if (result.isDenied) {
+                    Swal.fire("Changes are not saved", "", "info");
+                    // navigate('/myQueries');
+                }
+            });
+        }
+
+
     }
 
     return (
@@ -42,75 +93,49 @@ const BannerDataUpdate = () => {
                         </button>
                     </div>
 
-
-
-                    {/* 
-bannerName , 
-bannerImageLink, 
-bannerTitle ,
-bannerDescription, 
-bannerCouponCodeName, 
-bannerCouponRate,
-bannerActualRate, 
-bannerIsActive, 
-
-*/}
+                    +
 
                     <div className="p-6 space-y-6">
-
-
                         <div className="grid grid-cols-6 gap-6">
-
-
                             <div className="col-span-full mb-4">
                                 <label className="text-sm font-medium text-gray-900 block mb-2">Is Active</label>
-                                <select id="bannerIsActive" name="bannerIsActive"
+                                <select id="bannerIsActive" name="bannerIsActive" defaultValue={bannerIsActive}
                                     className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" required>
                                     <option value="">Select Active Or Not </option>
                                     <option value="true">Yes</option>
                                     <option value="false">No</option>
                                 </select>
-
                             </div>
-
-
-
-
-
-
                             <div className="col-span-6 sm:col-span-3">
                                 <label className="text-sm font-medium text-gray-900 block mb-2">Name</label>
-                                <input type="text" name="bannerName" id="bannerName" className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" placeholder="Name" required />
+                                <input type="text" name="bannerName" defaultValue={bannerName} id="bannerName" className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" placeholder="Name" required />
                             </div>
                             <div className="col-span-6 sm:col-span-3">
                                 <label className="text-sm font-medium text-gray-900 block mb-2">Title</label>
-                                <input type="text" name="bannerTitle" id="bannerTitle" className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" placeholder="Title" required />
+                                <input type="text" name="bannerTitle" defaultValue={bannerTitle} id="bannerTitle" className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" placeholder="Title" required />
                             </div>
-
                             <div className="col-span-6 sm:col-span-3">
                                 <label className="text-sm font-medium text-gray-900 block mb-2">Image URL</label>
-                                <input type="text" name="bannerImageLink" id="bannerImageLink" className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" placeholder="Image URL" required />
+                                <input type="text" name="bannerImageLink" defaultValue={bannerImageLink} id="bannerImageLink" className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" placeholder="Image URL" required />
                             </div>
                             <div className="col-span-6 sm:col-span-3">
                                 <label className="text-sm font-medium text-gray-900 block mb-2">Coupon Code</label>
-                                <input type="text" name="bannerCouponCodeName" id="bannerCouponCodeName" className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" placeholder="Coupon Code" required />
+                                <input type="text" name="bannerCouponCodeName" defaultValue={bannerCouponCodeName} id="bannerCouponCodeName" className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" placeholder="Coupon Code" required />
                             </div>
 
                             <div className="col-span-6 sm:col-span-3">
                                 <label className="text-sm font-medium text-gray-900 block mb-2">Coupon Rate</label>
-                                <input type="number" name="bannerCouponRate" id="bannerCouponRate" className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" placeholder="00.00 Tk" required />
+                                <input type="number" name="bannerCouponRate" defaultValue={bannerCouponRate} id="bannerCouponRate" className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" placeholder="00.00 Tk" required />
                             </div>
                             <div className="col-span-6 sm:col-span-3">
                                 <label className="text-sm font-medium text-gray-900 block mb-2">Coupon Rate</label>
-                                <input type="number" name="bannerActualRate" id="bannerActualRate" className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" placeholder="00.00 Tk" required />
+                                <input type="number" name="bannerActualRate" defaultValue={bannerActualRate} id="bannerActualRate" className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" placeholder="00.00 Tk" required />
                             </div>
-
                             <div className="col-span-full">
                                 <label className="text-sm font-medium text-gray-900 block mb-2">Description</label>
-                                <textarea id="bannerDescription" name="bannerDescription" rows="6" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-4" placeholder="Description" required></textarea>
+                                <textarea id="bannerDescription" name="bannerDescription" defaultValue={bannerDescription} rows="6" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-4" placeholder="Description" required></textarea>
                             </div>
                         </div>
-
                     </div>
 
                     <div className="p-6 border-t border-gray-200 rounded-b text-center">

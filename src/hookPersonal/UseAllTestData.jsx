@@ -1,14 +1,16 @@
 import {
     useQuery,
 } from '@tanstack/react-query'
-import axios from "axios";
+import useAxiosSecure from './useAxiosSecure';
 
 const UseAllTestData = () => {
+
+    const axiosSecure = useAxiosSecure();
 
     const { data: allTest = [], refetch } = useQuery({
         queryKey: ['allTest'],
         queryFn: async () => {
-            const res = await axios.get('http://localhost:5000/testData');
+            const res = await axiosSecure.get('/testData');
             return res.data;
         }
     })
@@ -17,4 +19,4 @@ const UseAllTestData = () => {
 
 };
 
-export default UseAllTestData;
+export default UseAllTestData; ''

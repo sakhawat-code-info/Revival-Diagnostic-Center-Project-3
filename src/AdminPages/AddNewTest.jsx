@@ -1,12 +1,13 @@
-import axios from "axios";
+
 import Swal from "sweetalert2";
+import useAxiosSecure from "../hookPersonal/useAxiosSecure";
 
 
 const AddNewTest = () => {
 
+    const axiosSecure = useAxiosSecure();
 
-
-    const handleNewTestData = (e) => {
+    const handleNewTestData = async (e) => {
         e.preventDefault();
         const form = e.target;
 
@@ -24,24 +25,26 @@ const AddNewTest = () => {
         }
 
 
-        axios.post('http://localhost:5000/testData', testData)
-            .then(data => {
-                console.log(data.data.insertedId)
-                if (data.data.insertedId) {
-                    Swal.fire({
-                        // position: "top-end",
-                        icon: "success",
-                        title: "Test Data Saved Successfully",
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
-                    // navigate('/myQueries');
-                }
-                form.reset();
-            })
-            .catch(function (error) {
-                console.log(error);
+        const addANewTest = await axiosSecure.post('/testData', testData)
+        if (addANewTest.data.insertedId) {
+            Swal.fire({
+                // position: "top-end",
+                icon: "success",
+                title: "Test Data Saved Successfully",
+                showConfirmButton: false,
+                timer: 1500
             });
+            // navigate('/myQueries');
+            form.reset();
+        }
+
+        // .then(data => {
+        //     console.log(data.data.insertedId)
+
+        // })
+        // .catch(function (error) {
+        //     console.log(error);
+        // });
 
 
 
