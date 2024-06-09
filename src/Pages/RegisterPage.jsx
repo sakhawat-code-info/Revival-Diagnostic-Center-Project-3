@@ -94,6 +94,7 @@ const RegisterPage = () => {
         const password = form.password.value;
         const confirmPassword = form.confirmPassword.value;
         const status = "active";
+        const role = "user";
 
         const registerData = {
             name,
@@ -110,7 +111,8 @@ const RegisterPage = () => {
 
             password,
             confirmPassword,
-            status
+            status,
+            role
         }
         // console.log(registerData)
 

@@ -1,24 +1,51 @@
 import { useLoaderData } from "react-router-dom";
+import UseAuth from "../hookPersonal/UseAuth";
+import useAxiosSecure from "../hookPersonal/useAxiosSecure";
+import Swal from "sweetalert2";
+import UseCartData from "../hookPersonal/UseCartData";
 
 
 const TestDetailsPage = () => {
-
+    const { user } = UseAuth();
     const data = useLoaderData();
-
+    const [, refetch] = UseCartData();
+    const axiosSecure = useAxiosSecure();
 
     const {
-        _id,
         testCatagory,
         testName,
         testImageURL,
         testDetails,
         testPrice,
-        testAddDate,
         slotDate,
         slot,
     } = data;
 
+    const addToCart = async (card) => {
+        if (user && user.email) {
+            const cartData = {
+                testName,
+                testImageURL,
+                testPrice,
+                slotDate,
+                slot,
+                testId: card._id,
+                email: user.email
+            }
+            const addANewTest = await axiosSecure.post('/cartItem', cartData)
+            if (addANewTest.data.insertedId) {
+                refetch();
+                Swal.fire({
+                    // position: "top-end",
+                    icon: "success",
+                    title: `${testName} added to cart Successfully`,
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            }
 
+        }
+    }
 
     return (
         <div className="container mx-auto">
@@ -121,7 +148,7 @@ const TestDetailsPage = () => {
 
                         <div className="flex flex-wrap gap-4">
                             <button type="button" className="min-w-[200px] px-4 py-3 bg-gray-800 hover:bg-gray-900 text-white text-sm font-semibold rounded">Pay Now</button>
-                            <button type="button" className="min-w-[200px] px-4 py-2.5 border border-gray-800 bg-transparent hover:bg-gray-50 text-gray-800 text-sm font-semibold rounded">Add to Cart</button>
+                            <button onClick={() => addToCart(data)} type="button" className="min-w-[200px] px-4 py-2.5 border border-gray-800 bg-transparent hover:bg-gray-50 text-gray-800 text-sm font-semibold rounded">Add to Cart</button>
                         </div>
                     </div>
                 </div>

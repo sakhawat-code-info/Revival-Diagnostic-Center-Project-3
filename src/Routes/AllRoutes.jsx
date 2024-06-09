@@ -22,6 +22,7 @@ import BannerDataUpdate from "../AdminPages/BannerDataUpdate";
 import BookingRatioDeliveryReportChart from "../AdminPages/BookingRatioDeliveryReportChart";
 import UserAllTestPage from "../Pages/UserAllTestPage";
 import TestDetailsPage from "../Pages/TestDetailsPage";
+import PrivateRouteForAdmin from "./PrivateRouteForAdmin";
 
 
 export const router = createBrowserRouter([
@@ -40,7 +41,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: "/testDetails/:updateId",
-                element: <TestDetailsPage />,
+                element: <PrivateRoute><TestDetailsPage /></PrivateRoute>,
                 loader: ({ params }) => fetch(`http://localhost:5000/getSingleTestData/${params.updateId}`)
             },
             {
@@ -71,46 +72,46 @@ export const router = createBrowserRouter([
     },
     {
         path: "adminDashboard",
-        element: <AdminDashboard />,
+        element: <PrivateRouteForAdmin><AdminDashboard /></PrivateRouteForAdmin>,
         errorElement: <ErrorPage />,
         children: [
             {
                 path: "/adminDashboard/allUsers",
-                element: <AllUsers />,
+                element: <PrivateRouteForAdmin><AllUsers /></PrivateRouteForAdmin>,
             },
             {
                 path: "/adminDashboard/addNewTest",
-                element: <AddNewTest />,
+                element: <PrivateRouteForAdmin><AddNewTest /></PrivateRouteForAdmin>,
             },
             {
                 path: "/adminDashboard/allTests",
-                element: <AllTests />,
+                element: <PrivateRouteForAdmin><AllTests /></PrivateRouteForAdmin>,
             },
             {
                 path: "/adminDashboard/testDataUpdate/:updateId",
-                element: <TestDataUpdate />,
+                element: <PrivateRouteForAdmin><TestDataUpdate /></PrivateRouteForAdmin>,
                 loader: ({ params }) => fetch(`http://localhost:5000/getSingleTestData/${params.updateId}`)
             },
             {
                 path: "/adminDashboard/allAppointments",
-                element: <AllAppointments />,
+                element: <PrivateRouteForAdmin><AllAppointments /></PrivateRouteForAdmin>,
             },
             {
                 path: "/adminDashboard/addBanner",
-                element: <AddBanner />,
+                element: <PrivateRouteForAdmin><AddBanner /></PrivateRouteForAdmin>,
             },
             {
                 path: "/adminDashboard/allBanner",
-                element: <AllBanner />,
+                element: <PrivateRouteForAdmin><AllBanner /></PrivateRouteForAdmin>,
             },
             {
                 path: "/adminDashboard/bannerDataUpdate/:updateId",
-                element: <BannerDataUpdate />,
+                element: <PrivateRouteForAdmin><BannerDataUpdate /></PrivateRouteForAdmin>,
                 loader: ({ params }) => fetch(`http://localhost:5000/getSingleBannerData/${params.updateId}`)
             },
             {
                 path: "/adminDashboard/bookingRatioDeliveryReportChart",
-                element: <BookingRatioDeliveryReportChart />,
+                element: <PrivateRouteForAdmin><BookingRatioDeliveryReportChart /></PrivateRouteForAdmin>,
             },
         ],
     },
