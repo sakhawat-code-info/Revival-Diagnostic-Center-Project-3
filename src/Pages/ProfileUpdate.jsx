@@ -145,7 +145,7 @@ const ProfileUpdate = () => {
         }
 
         const updateResult = await axiosPublic.patch(`/updateRegisterData/${data._id}`, registerDataUpdate)
-        console.log(updateResult)
+
         if (updateResult.data.matchedCount) {
             Swal.fire({
                 title: "Do you want to save the changes?",
@@ -163,6 +163,7 @@ const ProfileUpdate = () => {
                     // navigate('/myQueries');
                 }
             });
+            navigate('/profile')
         }
 
 
@@ -181,8 +182,7 @@ const ProfileUpdate = () => {
 
     return (
         <div>
-            <div className="flex justify-center items-center font-[sans-serif] text-[#333] h-full min-h-screen p-4"
-                style={{ backgroundImage: 'url(https://readymadeui.com/background-image.webp)', backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }}>
+            <div className="flex justify-center items-center font-[sans-serif] text-[#333] h-full min-h-screen p-4">
                 <div className="bg-white border rounded-lg px-8 py-6 mx-auto my-8 max-w-2xl" >
                     <div className="flex items-center justify-center">
                         <h2 className="text-2xl font-extrabold  mb-6">Profile Edit & Update </h2>
@@ -256,42 +256,42 @@ const ProfileUpdate = () => {
                             <div className="flex flex-wrap -mx-2">
                                 <div className="px-2 w-1/3">
                                     <label className="block text-gray-700 font-medium mb-2">
-                                        <input type="radio" name="bloodGroup" value="A+" className="mr-2" />A+
+                                        <input type="radio" name="bloodGroup" value="A+" className="mr-2" required />A+
                                     </label>
                                 </div>
                                 <div className="px-2 w-1/3">
                                     <label className="block text-gray-700 font-medium mb-2">
-                                        <input type="radio" name="bloodGroup" value="A-" className="mr-2" />A-
+                                        <input type="radio" name="bloodGroup" value="A-" className="mr-2" required />A-
                                     </label>
                                 </div>
                                 <div className="px-2 w-1/3">
                                     <label className="block text-gray-700 font-medium mb-2">
-                                        <input type="radio" name="bloodGroup" value="B+" className="mr-2" />B+
+                                        <input type="radio" name="bloodGroup" value="B+" className="mr-2" required />B+
                                     </label>
                                 </div>
                                 <div className="px-2 w-1/3">
                                     <label className="block text-gray-700 font-medium mb-2">
-                                        <input type="radio" name="bloodGroup" value="B-" className="mr-2" />B-
+                                        <input type="radio" name="bloodGroup" value="B-" className="mr-2" required />B-
                                     </label>
                                 </div>
                                 <div className="px-2 w-1/3">
                                     <label className="block text-gray-700 font-medium mb-2">
-                                        <input type="radio" name="bloodGroup" value="AB+" className="mr-2" />AB+
+                                        <input type="radio" name="bloodGroup" value="AB+" className="mr-2" required />AB+
                                     </label>
                                 </div>
                                 <div className="px-2 w-1/3">
                                     <label className="block text-gray-700 font-medium mb-2">
-                                        <input type="radio" name="bloodGroup" value="AB-" className="mr-2" />AB-
+                                        <input type="radio" name="bloodGroup" value="AB-" className="mr-2" required />AB-
                                     </label>
                                 </div>
                                 <div className="px-2 w-1/3">
                                     <label className="block text-gray-700 font-medium mb-2">
-                                        <input type="radio" name="bloodGroup" value="O+" className="mr-2" />O+
+                                        <input type="radio" name="bloodGroup" value="O+" className="mr-2" required />O+
                                     </label>
                                 </div>
                                 <div className="px-2 w-1/3">
                                     <label className="block text-gray-700 font-medium mb-2">
-                                        <input type="radio" name="bloodGroup" value="O-" className="mr-2" />O-
+                                        <input type="radio" name="bloodGroup" value="O-" className="mr-2" required />O-
                                     </label>
                                 </div>
                             </div>
@@ -328,25 +328,13 @@ const ProfileUpdate = () => {
                         </div>
 
 
-
-
-
-
-                        {/* 
-                <div className="mb-4">
-                    <label className="block text-gray-700 font-medium mb-2">Message</label>
-                    <textarea id="message" name="message"
-                        className="border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-400" rows="5"></textarea>
-                </div> */}
                         <div className="flex flex-col items-center justify-center">
-                            {/* <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">Submit</button> */}
-
                             <button type="submit" className="relative w-2/3 mt-4  inline-flex items-center justify-center p-4 px-6 py-3 overflow-hidden font-medium text-black transition duration-300 ease-out border-2 border-teal-600 rounded-full shadow-md group">
                                 <span className="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-x-full bg-teal-600 group-hover:translate-x-0 ease">
                                     Lets Go &nbsp;
                                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                                 </span>
-                                <span className="absolute flex items-center justify-center w-full h-full text-black font-extrabold transition-all duration-300 transform group-hover:translate-x-full ease">Register Now</span>
+                                <span className="absolute flex items-center justify-center w-full h-full text-black font-extrabold transition-all duration-300 transform group-hover:translate-x-full ease">Update Now</span>
                                 <span className="relative invisible">Button Text</span>
                             </button>
 
@@ -357,12 +345,7 @@ const ProfileUpdate = () => {
 
 
 
-                            <div className="flex gap-2 pt-5">
-                                <p className="text-gray-600 text-sm">Already have an account?</p>
-                                <Link to={'/login'} className="text-gray-600 text-sm underline">
-                                    Login
-                                </Link>
-                            </div>
+
                         </div>
 
                     </form>
