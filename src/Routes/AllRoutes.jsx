@@ -23,6 +23,8 @@ import BookingRatioDeliveryReportChart from "../AdminPages/BookingRatioDeliveryR
 import UserAllTestPage from "../Pages/UserAllTestPage";
 import TestDetailsPage from "../Pages/TestDetailsPage";
 import PrivateRouteForAdmin from "./PrivateRouteForAdmin";
+import BillInfo from "../Pages/BillInfo";
+import Checkout from "../Pages/Checkout";
 
 
 export const router = createBrowserRouter([
@@ -43,6 +45,14 @@ export const router = createBrowserRouter([
                 path: "/testDetails/:updateId",
                 element: <PrivateRoute><TestDetailsPage /></PrivateRoute>,
                 loader: ({ params }) => fetch(`http://localhost:5000/getSingleTestData/${params.updateId}`)
+            },
+            {
+                path: "/billInfo",
+                element: <PrivateRoute><BillInfo /></PrivateRoute>,
+            },
+            {
+                path: "/checkout",
+                element: <PrivateRoute><Checkout /></PrivateRoute>,
             },
             {
                 path: "/login",

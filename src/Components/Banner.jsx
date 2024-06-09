@@ -7,10 +7,11 @@ const Banner = () => {
 
     const [allBanner] = UseAllBannerData();
 
-    // const activeData = allBanner.map(item => item.bannerIsActive == 'true')
+    // const activeData = allBanner.find(item => item.bannerIsActive == 'true')
 
     // console.log(activeData)
 
+    console.log(allBanner)
 
     // console.log(
     //     bannerName,
