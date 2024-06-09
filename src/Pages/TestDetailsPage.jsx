@@ -30,7 +30,8 @@ const TestDetailsPage = () => {
                 slotDate,
                 slot,
                 testId: card._id,
-                email: user.email
+                email: user.email,
+                reportStatus: 'Pending'
             }
             const addANewTest = await axiosSecure.post('/cartItem', cartData)
             if (addANewTest.data.insertedId) {
