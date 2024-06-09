@@ -1,9 +1,14 @@
 // import { Link } from "react-router-dom";
 
+import { Link } from "react-router-dom";
+import UseAllTestData from "../hookPersonal/UseAllTestData";
+
 
 const UserAllTestPage = () => {
-    // console.log(testCatagory, testName, testImageURL, testDetails, testPrice, testAddDate)
 
+
+
+    const [allTest] = UseAllTestData();
 
 
     return (
@@ -37,22 +42,26 @@ const UserAllTestPage = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-16 max-md:max-w-lg mx-auto mb-20">
 
 
-
-
-                    <div className="bg-white cursor-pointer rounded overflow-hidden shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)] relative group">
-                        <img src="https://readymadeui.com/hacks-watch.webp" alt="Blog Post 2" className="w-full h-96 object-cover" />
-                        <div className="p-6 absolute bottom-0 left-0 right-0 bg-white opacity-90">
-                            <div className="flex justify-between items-center mb-2">
-                                <span className="text-sm block text-gray-600">7 JUN 2023 | BY MARK ADAIR</span>
-                                <button type="button" className="px-4 py-2 rounded text-white text-sm tracking-wider border-none outline-none bg-orange-500 hover:bg-orange-600">Read More</button>
-                            </div>
-                            <h3 className="text-xl font-bold text-[#333]">Hacks to Supercharge Your Day</h3>
-                            <div className="h-0 overflow-hidden group-hover:h-16 group-hover:mt-4 transition-all duration-300">
-                                <p className="text-gray-600 text-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis accumsan, nunc et tempus blandit, metus mi consectetur felis turpis vitae ligula.</p>
+                    {/* , , testImageURL, , testPrice, testAddDate, , slotTime */}
+                    {
+                        allTest?.map((item) => <div key={item._id} className="bg-white cursor-pointer rounded overflow-hidden shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)] relative group">
+                            <img src="https://readymadeui.com/hacks-watch.webp" alt="Blog Post 2" className="w-full h-96 object-cover" />
+                            <div className="p-6 absolute bottom-0 left-0 right-0 bg-white opacity-90">
+                                <div className="flex justify-between items-center mb-2">
+                                    <span className="text-sm block text-gray-600 uppercase">{item.slotDate} | {item.testCatagory}</span>
+                                    <Link to={`/testDetails/${item._id}`}>
+                                        <button type="button" className="px-4 py-2 rounded text-white text-sm tracking-wider border-none outline-none bg-orange-500 hover:bg-orange-600">Read More</button>
+                                    </Link>
+                                </div>
+                                <h3 className="text-xl font-bold text-[#333]">{item.testName}</h3>
+                                <div className="h-0 overflow-hidden group-hover:h-16 group-hover:mt-4 transition-all duration-300">
+                                    <p className="text-gray-600 text-sm">{item.testDetails}</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
+                        )
+                    }
 
 
 

@@ -21,6 +21,7 @@ import AllBanner from "../AdminPages/AllBanner";
 import BannerDataUpdate from "../AdminPages/BannerDataUpdate";
 import BookingRatioDeliveryReportChart from "../AdminPages/BookingRatioDeliveryReportChart";
 import UserAllTestPage from "../Pages/UserAllTestPage";
+import TestDetailsPage from "../Pages/TestDetailsPage";
 
 
 export const router = createBrowserRouter([
@@ -36,6 +37,11 @@ export const router = createBrowserRouter([
             {
                 path: "/userAllTestPage",
                 element: <UserAllTestPage />,
+            },
+            {
+                path: "/testDetails/:updateId",
+                element: <TestDetailsPage />,
+                loader: ({ params }) => fetch(`http://localhost:5000/getSingleTestData/${params.updateId}`)
             },
             {
                 path: "/login",

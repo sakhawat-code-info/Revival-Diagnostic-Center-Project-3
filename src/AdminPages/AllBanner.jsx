@@ -38,10 +38,63 @@ const AllBanner = () => {
     }
 
 
-    // const isActiveBanner = async () => {
+    const isActiveBanner = async (id, doIt) => {
 
 
-    // }
+        if (doIt === 'active') {
+            const updateBannerData = {
+                bannerIsActive: 'false'
+            }
+
+
+            Swal.fire({
+                title: "Do you want to save the changes?",
+                showDenyButton: true,
+                showCancelButton: true,
+                confirmButtonText: "Save",
+                denyButtonText: `Don't save`
+            }).then(async (result) => {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+                    const updateResult = await axiosSecure.patch(`/updateActiveBanner/${id}`, updateBannerData);
+
+                    if (updateResult.data.matchedCount) {
+                        Swal.fire("Saved!", "", "success");
+                        refetch()
+                    }
+                } else if (result.isDenied) {
+                    Swal.fire("Changes are not saved", "", "info");
+                }
+            });
+            return;
+
+        } else if (doIt === "inActive") {
+            const updateBannerData = {
+                bannerIsActive: 'true'
+            }
+
+            Swal.fire({
+                title: "Do you want to save the changes?",
+                showDenyButton: true,
+                showCancelButton: true,
+                confirmButtonText: "Save",
+                denyButtonText: `Don't save`
+            }).then(async (result) => {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+                    const updateResult = await axiosSecure.patch(`/updateActiveBanner/${id}`, updateBannerData);
+
+                    if (updateResult.data.matchedCount) {
+                        Swal.fire("Saved!", "", "success");
+                        refetch()
+                    }
+                } else if (result.isDenied) {
+                    Swal.fire("Changes are not saved", "", "info");
+                }
+            });
+            return;
+        }
+    }
 
 
 
@@ -83,9 +136,9 @@ const AllBanner = () => {
                     <tbody className="whitespace-nowrap">
 
                         {
-                            allBanner?.map(item => <tr key={item._id} className="hover:bg-gray-50">
+                            allBanner?.map((item, index) => <tr key={item._id} className="hover:bg-gray-50">
                                 <td className="p-4 text-sm text-black">
-                                    01
+                                    {index + 1}
                                 </td>
                                 <td className="p-4 text-sm text-black">
                                     <div className="flex items-center cursor-pointer w-max">
@@ -103,14 +156,21 @@ const AllBanner = () => {
                                     {item.bannerCouponRate} tk (15%)
                                     <p className="text-xs text-gray-500 mt-1">{item.bannerActualRate} tk</p>
                                 </td>
+
+
+
                                 <td className="p-4 text-sm text-green-700 font-extrabold text-center">
                                     {item.bannerIsActive === 'true' ? <>
-                                        <span className="w-[68px] block text-center py-1 border border-green-500 text-green-600 rounded text-xs mb-1">Active</span>
+                                        <span onClick={() => isActiveBanner(item._id, "active")} className=" w-[68px] block text-center py-1 border border-green-500 text-green-600 rounded text-xs mb-1">Active</span>
                                     </> : <>
-                                        <span className="w-[68px] block text-center py-1 border border-yellow-500 text-yellow-600 rounded text-xs">Inactive</span>
+                                        <span onClick={() => isActiveBanner(item._id, "inActive")} className="w-[68px] block text-center py-1 border border-yellow-500 text-yellow-600 rounded text-xs">Inactive</span>
                                     </>}
                                     {/* <p className="text-xs text-gray-500 mt-1">Web UI/UX Design</p> */}
                                 </td>
+
+
+
+
                                 <td className="p-4 text-sm text-black">
                                     <div className="flex justify-end gap-1">
                                         <Link to={`/adminDashboard/bannerDataUpdate/${item._id}`}
@@ -167,7 +227,7 @@ const AllBanner = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     );
 };
 

@@ -1,7 +1,15 @@
 import { Link } from "react-router-dom";
+import UseAllBannerData from "../hookPersonal/UseAllBannerData";
 
 
 const Banner = () => {
+
+
+    const [allBanner] = UseAllBannerData();
+
+    // const activeData = allBanner.map(item => item.bannerIsActive == 'true')
+
+    // console.log(activeData)
 
 
     // console.log(

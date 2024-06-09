@@ -17,11 +17,11 @@ const AddNewTest = () => {
         const testDetails = form.testDetails.value;
         const testPrice = form.testPrice.value;
         const testAddDate = form.testAddDate.value;
+        const slot = form.slot.value;
         const slotDate = form.slotDate.value;
-        const slotTime = form.slotTime.value;
 
         const testData = {
-            testCatagory, testName, testImageURL, testDetails, testPrice, testAddDate, slotDate, slotTime
+            testCatagory, testName, testImageURL, testDetails, testPrice, testAddDate, slot, slotDate
         }
 
 
@@ -124,8 +124,8 @@ const AddNewTest = () => {
                                 {/* <input type="time" name="slotTime" required /> */}
 
                                 <div className="flex gap-6">
+                                    <input type="number" name="slot" id="" className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" placeholder="Slot" required />
                                     <input type="date" name="slotDate" id="" className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" placeholder="Slot Date" required />
-                                    <input type="time" name="slotTime" id="" className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" placeholder="Slot Time" required />
                                 </div>
                             </div>
 
