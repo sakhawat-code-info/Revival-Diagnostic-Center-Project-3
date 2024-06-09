@@ -17,7 +17,7 @@ const ProfileUpdate = () => {
     const { isPending, error, data } = useQuery({
         queryKey: ['repoData'],
         queryFn: () =>
-            fetch(`http://localhost:5000/getSingleUserData/${user.email}`)
+            fetch(`https://b9a12-server-side-rho.vercel.app/getSingleUserData/${user.email}`)
                 .then((res) => res.json())
                 .then(data => {
                     return data;

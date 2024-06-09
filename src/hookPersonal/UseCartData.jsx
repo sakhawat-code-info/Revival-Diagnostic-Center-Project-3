@@ -15,7 +15,7 @@ const UseCartData = () => {
             return res.data;
         }
     })
-    return [cartData, refetch];
+    return { cartData, refetch }; //const {cartData, refetch} = UseCartData();
 };
 
 export default UseCartData;

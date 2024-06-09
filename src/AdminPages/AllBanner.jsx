@@ -6,9 +6,11 @@ import Swal from "sweetalert2";
 
 const AllBanner = () => {
 
-    const [allBanner, refetch] = UseAllBannerData();
-
     const axiosSecure = useAxiosSecure();
+
+    const { allBanner, refetch, isPending, error } = UseAllBannerData();
+    if (isPending) return 'Loading...'
+    if (error) return 'An error has occurred: ' + error.message
 
     const handleDeleteBannerData = (deletedID) => {
         Swal.fire({

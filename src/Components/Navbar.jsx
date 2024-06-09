@@ -6,7 +6,7 @@ import UseCartData from "../hookPersonal/UseCartData";
 
 const Navbar = () => {
 
-    const [cartData] = UseCartData();
+    const { cartData } = UseCartData();
 
 
 

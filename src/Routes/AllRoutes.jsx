@@ -44,7 +44,7 @@ export const router = createBrowserRouter([
             {
                 path: "/testDetails/:updateId",
                 element: <PrivateRoute><TestDetailsPage /></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/getSingleTestData/${params.updateId}`)
+                loader: ({ params }) => fetch(`https://b9a12-server-side-rho.vercel.app/getSingleTestData/${params.updateId}`)
             },
             {
                 path: "/billInfo",
@@ -100,7 +100,7 @@ export const router = createBrowserRouter([
             {
                 path: "/adminDashboard/testDataUpdate/:updateId",
                 element: <PrivateRouteForAdmin><TestDataUpdate /></PrivateRouteForAdmin>,
-                loader: ({ params }) => fetch(`http://localhost:5000/getSingleTestData/${params.updateId}`)
+                loader: ({ params }) => fetch(`https://b9a12-server-side-rho.vercel.app/getSingleTestData/${params.updateId}`)
             },
             {
                 path: "/adminDashboard/allAppointments",
@@ -117,7 +117,7 @@ export const router = createBrowserRouter([
             {
                 path: "/adminDashboard/bannerDataUpdate/:updateId",
                 element: <PrivateRouteForAdmin><BannerDataUpdate /></PrivateRouteForAdmin>,
-                loader: ({ params }) => fetch(`http://localhost:5000/getSingleBannerData/${params.updateId}`)
+                loader: ({ params }) => fetch(`https://b9a12-server-side-rho.vercel.app/getSingleBannerData/${params.updateId}`)
             },
             {
                 path: "/adminDashboard/bookingRatioDeliveryReportChart",

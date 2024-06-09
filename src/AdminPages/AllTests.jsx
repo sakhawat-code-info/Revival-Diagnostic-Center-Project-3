@@ -8,7 +8,7 @@ import useAxiosSecure from "../hookPersonal/useAxiosSecure";
 const AllTests = () => {
     const axiosSecure = useAxiosSecure();
 
-    const [allTest, refetch] = UseAllTestData();
+    const { allTest, refetch } = UseAllTestData();
 
     const handleDeleteTestData = (deletedID) => {
         Swal.fire({

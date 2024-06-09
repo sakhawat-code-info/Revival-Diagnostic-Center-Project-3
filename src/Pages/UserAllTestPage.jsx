@@ -8,7 +8,7 @@ const UserAllTestPage = () => {
 
 
 
-    const [allTest] = UseAllTestData();
+    const { allTest } = UseAllTestData();
 
 
     return (

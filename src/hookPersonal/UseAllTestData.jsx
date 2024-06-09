@@ -14,7 +14,7 @@ const UseAllTestData = () => {
             return res.data;
         }
     })
-    return [allTest, refetch];
+    return { allTest, refetch };
 
 
 };

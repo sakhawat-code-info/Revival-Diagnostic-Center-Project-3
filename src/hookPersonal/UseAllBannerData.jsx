@@ -15,11 +15,9 @@ const UseAllBannerData = () => {
             return res.data;
         }
     })
-    if (isPending) return 'Loading...'
+    const activeData = allBanner.find(item => item.bannerIsActive == 'true')
 
-    if (error) return 'An error has occurred: ' + error.message
-
-    return [allBanner, refetch]
+    return { allBanner, refetch, isPending, error, activeData }
 };
 
 export default UseAllBannerData;
