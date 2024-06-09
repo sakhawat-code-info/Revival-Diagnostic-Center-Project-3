@@ -7,16 +7,16 @@ const UseAllTestData = () => {
 
     const axiosSecure = useAxiosSecure();
 
-    const { data: allTest = [], refetch } = useQuery({
+    const { data: allTest = [], refetch, isPending, error } = useQuery({
         queryKey: ['allTest'],
         queryFn: async () => {
             const res = await axiosSecure.get('/testData');
             return res.data;
         }
     })
-    return { allTest, refetch };
+    return { allTest, refetch, isPending, error };
 
 
 };
 
-export default UseAllTestData; ''
+export default UseAllTestData;

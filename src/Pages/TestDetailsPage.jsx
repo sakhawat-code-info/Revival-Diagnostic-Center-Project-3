@@ -8,7 +8,7 @@ import UseCartData from "../hookPersonal/UseCartData";
 const TestDetailsPage = () => {
     const { user } = UseAuth();
     const data = useLoaderData();
-    const [, refetch] = UseCartData();
+    const { refetch } = UseCartData();
     const axiosSecure = useAxiosSecure();
 
     const {

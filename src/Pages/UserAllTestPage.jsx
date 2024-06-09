@@ -8,8 +8,10 @@ const UserAllTestPage = () => {
 
 
 
-    const { allTest } = UseAllTestData();
+    const { allTest, isPending, error } = UseAllTestData();
 
+    if (isPending) return 'Loading...'
+    if (error) return 'An error has occurred: ' + error.message
 
     return (
         <div className="bg-white font-[sans-serif]">

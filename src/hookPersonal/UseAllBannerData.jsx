@@ -8,7 +8,7 @@ const UseAllBannerData = () => {
 
     const axiosSecure = useAxiosSecure();
 
-    const { data: allBanner = [], refetch, isPending, error, } = useQuery({
+    const { data: allBanner = [], refetch, isPending, error } = useQuery({
         queryKey: ['allBanner'],
         queryFn: async () => {
             const res = await axiosSecure.get('/bannerData');
