@@ -18,7 +18,16 @@ const HealthTipsAndPromotions = () => {
     console.log(allHealthTips)
 
     return (
-        <div>
+        <div className='my-10'>
+
+            <div className="bg-gradient-to-r from-blue-700 to-[#B06AB3] font-sans px-6 py-12">
+                <div className="container mx-auto flex flex-col justify-center items-center text-center">
+                    <h2 className="text-white sm:text-4xl text-3xl font-bold mb-4">Discover our health tips && Preventive measures</h2>
+                    <p className="text-white text-base text-center mb-8"> Your doctor will ask about your medical history, including any chronic illnesses, surgeries, or hospitalizations. They will also inquire about your family medical history.</p>
+                </div>
+            </div>
+
+
             <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
 
                 {
