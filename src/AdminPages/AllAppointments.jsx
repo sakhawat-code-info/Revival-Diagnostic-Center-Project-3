@@ -1,17 +1,39 @@
 import { MdOutlineCancel } from "react-icons/md";
-// import useAxiosSecure from "../hookPersonal/useAxiosSecure";
+import useAxiosSecure from "../hookPersonal/useAxiosSecure";
 import UseCartData from "../hookPersonal/UseCartData";
+import { useState } from "react";
+// import { useQuery } from "@tanstack/react-query";
+
 
 
 const AllAppointments = () => {
-    // const axiosSecure = useAxiosSecure()
+    const axiosSecure = useAxiosSecure()
     const { allBookingCartData, isPending, error } = UseCartData();
 
     if (isPending) return 'Loading...'
     if (error) return 'An error has occurred: ' + error.message
+    const [file, setFile] = useState(null);
+
+
+    const onFileChange = (e) => {
+
+        setFile(e.target.files[0]);
+        console.log(file);
+    }
 
 
 
+    const handleReportFile = async (id, e) => {
+        console.log(id)
+        e.preventDefault();
+        const formData = new FormData();
+        formData.append('image', file)
+        const res = await axiosSecure.post(`/reportPDF/${id}`, formData)
+
+        console.log(res.data)
+
+
+    }
 
 
     return (
@@ -67,13 +89,21 @@ const AllAppointments = () => {
                                             <p className="text-xs text-gray-500 mt-0.5">{item.email}</p>
                                         </div>
 
-                                        <form>
+                                        {/* <form onSubmit={handleReportFile} enctype="multipart/form-data">
                                             <div className="mt-3">
                                                 <label className="mb-1 block text-sm font-medium text-gray-700">Upload Report</label>
-                                                <input id="example1" type="file" className="mt-2 block w-full text-sm file:mr-4 file:rounded-md file:border-0 file:bg-teal-500 file:py-2 file:px-4 file:text-sm file:font-semibold file:text-white hover:file:bg-teal-700 focus:outline-none disabled:pointer-events-none disabled:opacity-60" />
+                                                <input id="reportFile" name="reportFile" type="file" className="mt-2 block w-full text-sm file:mr-4 file:rounded-md file:border-0 file:bg-teal-500 file:py-2 file:px-4 file:text-sm file:font-semibold file:text-white hover:file:bg-teal-700 focus:outline-none disabled:pointer-events-none disabled:opacity-60" />
                                                 <div className="flex items-center justify-center mt-4">
                                                     <input type="submit" className="px-5 py-2.5 rounded-full text-white text-sm tracking-wider font-medium border border-current outline-none bg-red-700 hover:bg-red-800 active:bg-red-700 " value="Save" />
                                                 </div>
+                                            </div>
+                                        </form> */}
+                                        <form onSubmit={(e) => handleReportFile(item._id, e)}>
+                                            <div className="form-group">
+                                                <input type="file" name="reportFile" onChange={onFileChange} />
+                                            </div>
+                                            <div className="form-group">
+                                                <button className="btn btn-primary" type="submit">Upload</button>
                                             </div>
                                         </form>
                                     </div>
