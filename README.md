@@ -46,6 +46,17 @@ heading
 69 (1,2,3, 4(img upload))
 
 
+env.local
+
+    VITE_APIKEY= AIzaSyAy7PGVeaAjq5qBviXD-pTo0vN2bRX478Q
+    VITE_AUTHDOMAIN= b9a12-client-side.firebaseapp.com
+    VITE_PROJECTID= b9a12-client-side
+    VITE_STORAGEBUCKET= b9a12-client-side.appspot.com
+    VITE_MESSAGINGSENDERID= 214182500312
+    VITE_APPID= 1:214182500312:web:20bdb2015bf7cbf7a844ad
+
+    VITE_Stripe_KYE= pk_test_51PPzRrP1g1SRHG8UwW6lD9qNLNarPkbszGq5aKCYiCTVxZP82oLvVAHdJ1IjN6glYEqV2z28cVznXeIp1ZJ0AGfQ00z9ssMGDa
+
 
 
 

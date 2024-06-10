@@ -8,9 +8,9 @@ import { Link } from "react-router-dom";
 
 const BillInfo = () => {
     const axiosSecure = useAxiosSecure()
-    const { cartData, refetch } = UseCartData();
+    const { cartData, refetch, totalPrice } = UseCartData();
 
-    const totalPrice = cartData.reduce((total, item) => total + parseInt(item.testPrice), 0)
+
 
 
     const removeItem = (id) => {

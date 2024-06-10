@@ -15,7 +15,10 @@ const UseCartData = () => {
             return res.data;
         }
     })
-    return { cartData, refetch, isPending, error }; //const {cartData, refetch, isPending, error} = UseCartData();
+
+    const totalPrice = cartData.reduce((total, item) => total + parseInt(item.testPrice), 0)
+
+    return { cartData, refetch, isPending, error, totalPrice }; //const {cartData, refetch, totalPrice, isPending, error} = UseCartData();
 };
 
 export default UseCartData;
