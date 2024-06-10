@@ -17,7 +17,8 @@ const UseAllBannerData = () => {
     })
     const activeData = allBanner.find(item => item.bannerIsActive == 'true')
 
-    return { allBanner, refetch, isPending, error, activeData }
+    return { allBanner, refetch, isPending, error, activeData };
+    // const { allBanner, refetch, isPending, error, activeData } = UseAllBannerData();
 };
 
 export default UseAllBannerData;

@@ -34,6 +34,7 @@ const TestDetailsPage = () => {
                 reportStatus: 'Pending'
             }
             const addANewTest = await axiosSecure.post('/cartItem', cartData)
+
             if (addANewTest.data.insertedId) {
                 refetch();
                 Swal.fire({
@@ -54,8 +55,8 @@ const TestDetailsPage = () => {
                 <div className="grid items-start grid-cols-1 lg:grid-cols-5 gap-8">
 
                     <div className="lg:col-span-3 text-center">
-                        <div className="lg:h-[450px] p-4 relative before:absolute before:inset-0 before:bg-black before:opacity-20 before:rounded">
-                            <img src="https://readymadeui.com/images/sunglass7.webp" alt="Product" className="lg:w-11/12 w-full h-full rounded-xl object-contain object-top" />
+                        <div className="lg:h-[450px] bg-cover p-1 relative before:absolute before:inset-0 before:bg-black before:opacity-20 before:rounded">
+                            <img src={testImageURL} alt="Product" className=" w-full h-full rounded-xl object-content bg-cover " />
                         </div>
                     </div>
 

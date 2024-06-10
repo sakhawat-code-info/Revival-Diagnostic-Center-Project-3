@@ -2,6 +2,7 @@ import { createContext, useEffect, useState } from "react";
 import PropTypes from 'prop-types';
 import { GoogleAuthProvider, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import auth from "../firebase/firebase.config";
+import useAxiosPublic from "../hookPersonal/useAxiosPublic";
 // import axios from "axios";
 
 
@@ -9,6 +10,9 @@ import auth from "../firebase/firebase.config";
 export const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
+
+    const axiosPublic = useAxiosPublic();
+
 
     const [user, setUser] = useState([]);
     const [loader, setLoader] = useState(true);
@@ -35,21 +39,20 @@ const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-            // const userEmail = currentUser?.email || user.email;
-            // const emailData = { email: userEmail }
+            const userEmail = currentUser?.email || user.email;
+            const emailData = { email: userEmail }
             if (currentUser) {
 
                 setUser(currentUser);
                 setLoader(false);
 
-                // axios.post('https://b9a11-server-side-sakhawat-code-info.vercel.app/jwt', emailData, { withCredentials: true })
-                //     .then(res => res.data)
-
+                axiosPublic.post('/jwt', emailData, { withCredentials: true })
+                    .then(res => res.data)
 
             } else {
 
-                // axios.post('https://b9a11-server-side-sakhawat-code-info.vercel.app/jwtLogout', emailData, { withCredentials: true })
-                //     .then(res => console.log("token clear", res.data))
+                axiosPublic.post('/jwtLogout', emailData, { withCredentials: true })
+                    .then(res => console.log("token clear", res.data))
 
                 setUser("");
                 setLoader(false)

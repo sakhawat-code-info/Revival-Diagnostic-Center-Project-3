@@ -47,7 +47,7 @@ const UserAllTestPage = () => {
                     {/* , , testImageURL, , testPrice, testAddDate, , slotTime */}
                     {
                         allTest?.map((item) => <div key={item._id} className="bg-white cursor-pointer rounded overflow-hidden shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)] relative group">
-                            <img src="https://readymadeui.com/hacks-watch.webp" alt="Blog Post 2" className="w-full h-96 object-cover" />
+                            <img src={item.testImageURL} alt="Blog Post 2" className="w-full h-96 object-cover" />
                             <div className="p-6 absolute bottom-0 left-0 right-0 bg-white opacity-90">
                                 <div className="flex justify-between items-center mb-2">
                                     <span className="text-sm block text-gray-600 uppercase">{item.slotDate} | {item.testCatagory}</span>

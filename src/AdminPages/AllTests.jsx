@@ -42,7 +42,7 @@ const AllTests = () => {
         <div className="container mx-auto">
             <section className="container px-4 mx-auto">
                 <div className="flex items-center gap-x-3">
-                    <h2 className="text-lg font-medium text-gray-800 dark:text-white">Test members</h2>
+                    <h2 className="text-lg font-medium text-gray-800 dark:text-white">Test numbers</h2>
 
                     <span className="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full dark:bg-gray-800 dark:text-blue-400">
                         {allTest.length} Tests
@@ -104,7 +104,7 @@ const AllTests = () => {
                                                         {/* <input type="checkbox" className="text-blue-500 border-gray-300 rounded dark:bg-gray-900 dark:ring-offset-gray-900 dark:border-gray-700" /> */}
 
                                                         <div className="flex items-center gap-x-2">
-                                                            <img className="object-cover w-10 h-10 rounded-full" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80" alt="" />
+                                                            <img className="object-cover w-10 h-10 rounded-full" src={item.testImageURL} alt="" />
                                                             <div>
                                                                 <h2 className="font-medium text-gray-800 dark:text-white ">{item.testName}</h2>
                                                                 <p className="text-sm font-normal text-gray-600 dark:text-gray-400">{item.testCatagory}</p>

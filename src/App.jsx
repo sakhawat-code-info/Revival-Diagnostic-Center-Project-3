@@ -2,6 +2,7 @@
 
 import './App.css'
 import Banner from './Components/Banner'
+import HealthTipsAndPromotions from './Components/HealthTipsAndPromotions'
 import Promotions from './Components/Promotions'
 import SliderFeaturedTest from './Components/SliderFeaturedTest/SliderFeaturedTest'
 
@@ -22,6 +23,8 @@ function App() {
         <SliderFeaturedTest></SliderFeaturedTest>
 
         <Promotions></Promotions>
+
+        <HealthTipsAndPromotions></HealthTipsAndPromotions>
 
       </div>
 

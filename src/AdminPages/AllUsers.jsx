@@ -3,6 +3,7 @@ import { MdOutlineFileDownload } from "react-icons/md";
 import useAxiosSecure from "../hookPersonal/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
+import UseAuth from "../hookPersonal/UseAuth";
 
 
 
@@ -10,6 +11,8 @@ const AllUsers = () => {
 
     const axiosSecure = useAxiosSecure();
 
+    const { user } = UseAuth();
+    // console.log(user)
     const { data: allUsers = [], refetch } = useQuery({
         queryKey: ['allUsers'],
         queryFn: async () => {
@@ -186,7 +189,7 @@ const AllUsers = () => {
                                 </td>
                                 <td className="p-4 text-sm text-gray-800">
                                     <div className="flex items-center cursor-pointer w-max">
-                                        <img src='https://readymadeui.com/profile_4.webp' className="w-9 h-9 rounded-full shrink-0" />
+                                        <img src={user.photoURL} className="w-9 h-9 rounded-full shrink-0" />
                                         <div className="ml-4">
                                             <p className="text-sm text-black">{item.name}</p>
                                             <p className="text-xs text-gray-500 mt-0.5">{item.email}</p>

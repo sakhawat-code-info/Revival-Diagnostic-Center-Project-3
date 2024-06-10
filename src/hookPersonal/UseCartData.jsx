@@ -18,7 +18,16 @@ const UseCartData = () => {
 
     const totalPrice = cartData.reduce((total, item) => total + parseInt(item.testPrice), 0)
 
-    return { cartData, refetch, isPending, error, totalPrice }; //const {cartData, refetch, totalPrice, isPending, error} = UseCartData();
+    const { data: allBookingCartData = [] } = useQuery({
+        queryKey: ['allBookingCartData'],
+        queryFn: async () => {
+            const res = await axiosSecure.get('/allCartData');
+            return res.data;
+        }
+    })
+
+    return { cartData, refetch, isPending, error, totalPrice, allBookingCartData };
+    //const {cartData, refetch, totalPrice, isPending, error, allBookingCartData} = UseCartData();
 };
 
 export default UseCartData;
